@@ -1,3 +1,6 @@
+# Own ignores
+minilibx
+
 # Prerequisites
 *.d
 
