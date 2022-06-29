@@ -1,23 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_file.c                                        :+:      :+:    :+:   */
+/*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/16 15:43:14 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/06/16 15:59:24 by evanha-p         ###   ########.fr       */
+/*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
+/*   Updated: 2022/06/29 17:12:08 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minilibx/mlx.h"
+#ifndef FDF_H
+# define FDF_H
 
-int     main()
+# include "minilibx/mlx.h"
+# include <stdlib.h>
+# include <math.h>
+# include <stdio.h> /* DELETE THIS BEFORE COMMITTING!!! */
+
+typedef struct s_mlx
 {
-    void    *mlx_ptr;
-    void    *win_ptr;
+	void	*mlx_ptr;
+	void	*win_ptr;
+} t_mlx;
 
-    mlx_ptr = mlx_init();
-    win_ptr = mlx_new_window(mlx_ptr, 500, 500, "test_window");
-    mlx_loop(mlx_ptr);
-}
+typedef struct s_line
+{
+	int		start_x;
+	int		start_y;
+	int		end_x;
+	int		end_y;
+	int		color;
+} t_line;
+
+int		draw_line(t_mlx *mlx, t_line *line);
+
+#endif
