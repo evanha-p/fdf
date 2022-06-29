@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:56:51 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/06/29 17:29:17 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/06/29 18:22:38 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,8 @@ int     main()
     line = (t_line *)malloc(sizeof(t_line));
     if (!mlx || !line)
         return (1);
-    line->start_x = 0;
-    line->start_y = 0;
-    line->end_x = 1000;
-    line->end_y = 500;
     mlx->mlx_ptr = mlx_init();
     mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, 1000, 500, "test window");
-    draw_line(mlx, line);
     line->start_x = 0;
     line->start_y = 500;
     line->end_x = 1000;
