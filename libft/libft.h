@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 18:11:07 by evanha-p          #+#    #+#             */
-/*   Updated: 2021/12/16 20:15:23 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/07/06 16:28:40 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include <stdlib.h>
 
 # define INT_MAX_LEN 12
+/* macros below are used in function get_next_line */
+# define GNL_MAX_FD 4096
+# define GNL_BUFF_SIZE 50
 
 typedef struct s_list
 {
@@ -89,5 +92,6 @@ void	ft_lstpurge(t_list *list);
 t_list	*ft_lstcleaner(t_list *list);
 int		ft_countnodes(t_list *list);
 char	**ft_arrclean(char **arr);
+int		get_next_line(const int fd, char **line);
 
 #endif

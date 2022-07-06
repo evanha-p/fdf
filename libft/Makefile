@@ -6,7 +6,7 @@
 #    By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/03 17:29:20 by evanha-p          #+#    #+#              #
-#    Updated: 2022/05/12 15:33:18 by evanha-p         ###   ########.fr        #
+#    Updated: 2022/07/06 16:25:02 by evanha-p         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRC = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c ft_memchr.c f
 	  ft_strmapi.c ft_strequ.c ft_strnequ.c ft_strsub.c ft_strjoin.c ft_strtrim.c ft_strsplit.c ft_itoa.c ft_putstr.c\
 	  ft_putchar.c ft_putendl.c ft_putnbr.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_lstnew.c\
 	  ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_iswspace.c ft_lstpurge.c ft_lstcleaner.c\
-	  ft_countnodes.c ft_arrclean.c
+	  ft_countnodes.c ft_arrclean.c get_next_line.c
 OBJ = $(patsubst %.c, %.o, $(SRC))
 
 .PHONY: all clean fclean re
