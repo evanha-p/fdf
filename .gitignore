@@ -1,5 +1,6 @@
 # Own ignores
 minilibx
+**/.DS_Store
 .DS_Store
 
 # Prerequisites
