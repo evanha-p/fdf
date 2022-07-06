@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/06 16:15:40 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/07/06 16:18:56 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@ typedef struct s_point
 	t_point	*next;
 }	t_point;
 
-/* Created a custom boolian so we can improve readability
- * by returning false/true instead of 0 or 1.
+/* Created a custom boolian to improve readability.
+ * false = 0
+ * true = 1
  */
 
 typedef enum e_bool
