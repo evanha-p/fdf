@@ -6,11 +6,11 @@
 /*   By: evanha-p <evanha-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 17:57:41 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/06 16:31:03 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/07/07 13:46:52 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 /* Saves what we have in variable saved to variable line.
  * First we check where the '\n' if there is one.
@@ -81,13 +81,13 @@ int	get_next_line(const int fd, char **line)
 	int			ret;
 
 	ret = 1;
-	if (fd < 0 || fd > MAX_FD || !line)
+	if (fd < 0 || fd > GNL_MAX_FD || !line)
 		return (-1);
 	if (saved[fd] && ft_strchr(saved[fd], '\n'))
 		return (ft_savestring(line, saved, fd, ret));
 	while (ret)
 	{
-		ret = read(fd, buffer, BUFF_SIZE);
+		ret = read(fd, buffer, GNL_BUFF_SIZE);
 		if (ret < 0)
 			return (-1);
 		buffer[ret] = '\0';

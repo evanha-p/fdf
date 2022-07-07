@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:56:51 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/06/29 19:29:29 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/07/07 14:00:27 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,5 @@ int	main(void)
 	line->end_y = 0;
 	draw_line(mlx, line);
 	mlx_loop(mlx->mlx_ptr);
+	return (0);
 }
