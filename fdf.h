@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/07 14:17:57 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/07/07 16:10:17 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,12 @@ struct s_point
 	t_point	*next;
 };
 
-int		draw_line(t_mlx *mlx, t_line *line);
+typedef struct s_var
+{
+	int		i;
+	int		x_coord;
+}	t_var;
 
+int		draw_line(t_mlx *mlx, t_line *line);
+t_var	initialize_variables(t_var *var);
 #endif
