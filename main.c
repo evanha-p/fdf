@@ -6,15 +6,15 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:56:51 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/07 15:01:18 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/07/07 18:28:50 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	t_mlx	*mlx;
+	/*t_mlx	*mlx;
 	t_line	*line;
 
 	mlx = (t_mlx *)malloc(sizeof(t_mlx));
@@ -29,5 +29,24 @@ int	main(void)
 	line->end_y = 0;
 	draw_line(mlx, line);
 	mlx_loop(mlx->mlx_ptr);
+	return (0);*/
+	t_point	*points;
+
+	if (argc != 2)
+		return (0);
+	points = reader(argv[1]);
+	while (points->next)
+	{
+		if (points->exists)
+			ft_putstr("REAL NODE\n");
+		else
+			ft_putstr("NO NODE\n");
+		ft_putnbr(points->x);
+		ft_putnbr(points->y);
+		ft_putnbr(points->z);
+		ft_putchar('\n');
+		ft_putstr("----------------\n");
+		points = points->next;
+	}
 	return (0);
 }

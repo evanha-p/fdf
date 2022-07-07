@@ -6,15 +6,15 @@
 #    By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/06 13:24:17 by evanha-p          #+#    #+#              #
-#    Updated: 2022/07/07 13:53:50 by evanha-p         ###   ########.fr        #
+#    Updated: 2022/07/07 17:03:54 by evanha-p         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -L /usr/local/lib -lmlx -I /minilibx/ \
-		 -framework OpenGL -framework AppKit
+		 -framework OpenGL -framework AppKit -g
 NAME = fdf
-SRC = draw.c main.c libft/libft.a
+SRC = draw.c main.c read.c utils.c libft/libft.a
 OBJ = $(patsubst %.c, %.o, $(SRC))
 LIBFT = libft/
 

@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/07 16:10:17 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/07/07 18:01:10 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "libft/libft.h"
 # include <stdlib.h>
 # include <math.h>
+# include <fcntl.h>
 
 /* Stores all mlx related data */
 
@@ -64,8 +65,11 @@ typedef struct s_var
 {
 	int		i;
 	int		x_coord;
+	int		y_coord;
+	int		ret;
 }	t_var;
 
 int		draw_line(t_mlx *mlx, t_line *line);
-t_var	initialize_variables(t_var *var);
+t_point	*reader(char *argv);
+void	initialize_variables(t_var *var);
 #endif
