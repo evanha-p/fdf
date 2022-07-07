@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/06 16:22:39 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/07/07 13:20:35 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,15 @@ typedef struct s_line
 
 /* Stores properties of a single point */
 
-typedef struct s_point
+
+typedef struct s_point	t_point;
+struct s_point
 {
 	int		x;
 	int		y;
 	int		height;
 	t_point	*next;
-}	t_point;
+};
 
 /* Created a custom boolian to improve readability.
  * false = 0
