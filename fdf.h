@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/07 13:51:16 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/07/07 14:17:57 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,6 @@ typedef struct s_line
 	int		color;
 }	t_line;
 
-/* Stores properties of a single point */
-
-
-typedef struct s_point	t_point;
-struct s_point
-{
-	int		x;
-	int		y;
-	int		height;
-	t_point	*next;
-};
-
 /* Created a custom boolian to improve readability.
  * false = 0
  * true = 1
@@ -59,6 +47,18 @@ typedef enum e_bool
 	false,
 	true
 }	t_bool;
+
+/* Stores properties of a single point */
+
+typedef struct s_point	t_point;
+struct s_point
+{
+	t_bool	exists;
+	int		x;
+	int		y;
+	int		z;
+	t_point	*next;
+};
 
 int		draw_line(t_mlx *mlx, t_line *line);
 
