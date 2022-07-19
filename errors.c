@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 16:48:56 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/19 17:43:39 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/07/19 17:46:53 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,13 @@ void	errors(char *str)
  *amount of spaces should always be uneven numberi since an empty
  *point takes two spaces and there is one space after the height value.
  *
- *Example (spaces replaced by '*' for readability):
+ *Examples (spaces replaced by '*' for readability):
+ *
+ *	10*		**
+ *  --		 \
+ *   \        correct way to represent an empty point
+ *    \
+ *     correct way to represent a point
  *
  *  Correct line with a empty point between 10 and 5:
  *	1*10***5
