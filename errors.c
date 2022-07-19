@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 16:48:56 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/19 17:32:24 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/07/19 17:43:39 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,30 @@ void	errors(char *str)
 				submit a file with spaces and numbers\n");
 	exit(0);
 }
+
+/*
+ *Static helper function for check_line. Checks spaces between numbers
+ *and makes sure the number is correct.
+ *There should be two spaces if the empty point is at the BEGINNING of
+ *the line.
+ *If the empty point is somewhere in the MIDDLE or at the END the
+ *amount of spaces should always be uneven numberi since an empty
+ *point takes two spaces and there is one space after the height value.
+ *
+ *Example (spaces replaced by '*' for readability):
+ *
+ *  Correct line with a empty point between 10 and 5:
+ *	1*10***5
+ *	
+ *	Incorrect line, one space missing between 3 and 2:
+ *	5*3**2
+ *
+ *  Incorrect line, there are two empty points between
+ *  0 and 3 but there is also one extra space:
+ *	0******3*5
+ *
+ *Function calls errors() if it detects any funky stuff.
+ */
 
 static	void	check_spaces(char *str, t_var *variables)
 {
