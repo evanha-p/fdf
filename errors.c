@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 16:48:56 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/19 17:46:53 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/07/19 17:47:30 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	errors(char *str)
  *There should be two spaces if the empty point is at the BEGINNING of
  *the line.
  *If the empty point is somewhere in the MIDDLE or at the END the
- *amount of spaces should always be uneven numberi since an empty
+ *amount of spaces should always be uneven number since an empty
  *point takes two spaces and there is one space after the height value.
  *
  *Examples (spaces replaced by '*' for readability):
