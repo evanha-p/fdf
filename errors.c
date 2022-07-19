@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 16:48:56 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/19 17:47:30 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/07/19 17:52:11 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ void	errors(char *str)
  *
  *  Correct line with a empty point between 10 and 5:
  *	1*10***5
+ *
+ *	Correct line with an empty point at the end:
+ *	5*3*2***
  *	
  *	Incorrect line, one space missing between 3 and 2:
  *	5*3**2
@@ -60,6 +63,9 @@ void	errors(char *str)
  *  0 and 3 but there is also one extra space:
  *	0******3*5
  *
+ *The values of points are stored incorrectly to the list
+ *if we don't check that there are right amount of spaces
+ *in each line.
  *Function calls errors() if it detects any funky stuff.
  */
 
