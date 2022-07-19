@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/07 18:01:10 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/07/19 14:23:38 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_var
 	int		x_coord;
 	int		y_coord;
 	int		ret;
+	int		str_length;
 }	t_var;
 
 int		draw_line(t_mlx *mlx, t_line *line);

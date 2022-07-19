@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:56:51 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/07 18:52:46 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/07/19 13:59:02 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ int	main(int argc, char **argv)
 	mlx_loop(mlx->mlx_ptr);
 	return (0);*/
 	t_point	*points;
+	int		i;
 
+	i = 0;
 	if (argc != 2)
 		return (0);
 	points = reader(argv[1]);
@@ -47,6 +49,9 @@ int	main(int argc, char **argv)
 		ft_putchar('\n');
 		ft_putstr("----------------\n");
 		points = points->next;
+		i++;
 	}
+	ft_putstr("Number of nodes: ");
+	ft_putnbr(i);
 	return (0);
 }

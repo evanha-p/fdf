@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:43:51 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/07 18:52:44 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/07/19 14:27:06 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ static	t_point	*read_row(t_point *point, char *line, int y)
 
 	initialize_variables(&variables);
 	variables.y_coord = y;
-	while (line[variables.i])
+	variables.str_length = ft_strlen(line);
+	while (variables.i < variables.str_length)
 	{
 		if (line[variables.i] == ' ' && \
 				(line[variables.i + 1] == ' ' || !line[variables.i + 1]))
