@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:43:51 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/19 14:27:06 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/07/19 17:20:14 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,11 @@ static	void	set_point_values(t_point *point, t_bool boolean, \
 static	t_point	*read_row(t_point *point, char *line, int y)
 {
 	t_var	variables;
-	t_point	*next;
 
 	initialize_variables(&variables);
 	variables.y_coord = y;
-	variables.str_length = ft_strlen(line);
-	while (variables.i < variables.str_length)
+	variables.length = ft_strlen(line);
+	while (variables.i < variables.length)
 	{
 		if (line[variables.i] == ' ' && \
 				(line[variables.i + 1] == ' ' || !line[variables.i + 1]))
@@ -100,14 +99,7 @@ static	t_point	*read_row(t_point *point, char *line, int y)
 			variables.x_coord++;
 			variables.i = skipper(line, variables.i);
 		}
-		next = (t_point *)malloc(sizeof(t_point));
-		if (!next)
-		{
-			ft_putstr("SOS\n");
-			return (NULL);
-		}
-		point->next = next;
-		point = next;
+		point = new_point(point);
 		variables.i++;
 	}
 	point->next = NULL;
@@ -135,6 +127,7 @@ t_point	*reader(char *argv)
 	while (variables.ret > 0)
 	{
 		variables.ret = get_next_line(fd, &line);
+		check_line(line);
 		temp = read_row(temp, line, variables.i);
 		variables.i++;
 	}
