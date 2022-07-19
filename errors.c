@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 16:48:56 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/19 17:16:37 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/07/19 17:32:24 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ void	errors(char *str)
 		ft_putstr("Number of spaces doesn't match the number of points. (Two for each empty point, \
 			one for each 'normal' point\n");
 	if (!(ft_strcmp("file does not exist", str)))
-		ft_putstr("Couldnt find a file with that name.\n");
+		ft_putstr("Couldn't find a file with that name.\n");
+	if (!(ft_strcmp("null pointer", str)))
+		ft_putstr("Malloc returned null\n");
+	/*THESE ARE NOT IMPLEMENTED YET!!!*/
 	if (!(ft_strcmp("no nodes", str)))
 		ft_putstr("Error. Either the file is empty or only contains spaces. Please \
 				submit a file with spaces and numbers\n");

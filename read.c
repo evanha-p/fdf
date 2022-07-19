@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:43:51 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/19 17:20:14 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/07/19 17:25:37 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ t_point	*reader(char *argv)
 	head = temp;
 	fd = open(argv, O_RDONLY);
 	if (fd < 0)
-		return (NULL);
+		errors("file does not exist");
 	while (variables.ret > 0)
 	{
 		variables.ret = get_next_line(fd, &line);
