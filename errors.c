@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 16:48:56 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/19 17:52:11 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/07/20 15:09:23 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,40 @@
 
 void	errors(char *str)
 {
+	ft_putstr_fd("Error: ", 2);
 	if (!(ft_strcmp("invalid file content", str)))
-		ft_putstr("File content invalid. Submit a file with only \
-				numbers and spaces.\n");
+		ft_putstr_fd("File content invalid. Submit a file with only numbers and spaces.\n", 2);
 	if (!(ft_strcmp("too many spaces", str)))
-		ft_putstr("Number of spaces doesn't match the number of points. (Two for each empty point, \
-			one for each 'normal' point\n");
+	{
+		ft_putstr_fd("Number of spaces doesn't match the number of points.", 2);
+		ft_putstr_fd("Two for each empty point, one for each 'normal' point\n", 2);
+	}
 	if (!(ft_strcmp("file does not exist", str)))
-		ft_putstr("Couldn't find a file with that name.\n");
+		ft_putstr_fd("Couldn't find a file with that name.\n", 2);
 	if (!(ft_strcmp("null pointer", str)))
-		ft_putstr("Malloc returned null\n");
-	/*THESE ARE NOT IMPLEMENTED YET!!!*/
+		ft_putstr_fd("Malloc returned null\n", 2);
 	if (!(ft_strcmp("no nodes", str)))
-		ft_putstr("Error. Either the file is empty or only contains spaces. Please \
-				submit a file with spaces and numbers\n");
+		ft_putstr_fd("Error. Either the file is empty or only contains spaces.\n", 2);
+	ft_putstr("Usage: ./fdf <your file here>");
 	exit(0);
+}
+
+void	check_nodes(t_point *point)
+{
+	t_point	*head;
+	t_bool	found_point;
+
+	head = point;
+	found_point = false;
+	while (point->next)
+	{
+		if (point->exists)
+			found_point = true;
+		point = point->next;
+	}
+	if (!found_point)
+		errors("no nodes");
+	point = head;
 }
 
 /*

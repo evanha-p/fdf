@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:43:51 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/19 17:52:12 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/07/20 14:54:58 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,5 +132,6 @@ t_point	*reader(char *argv)
 		variables.i++;
 	}
 	temp = head;
+	check_nodes(temp);
 	return (temp);
 }

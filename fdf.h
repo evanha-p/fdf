@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/19 17:20:58 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/07/20 14:47:22 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <math.h>
 # include <fcntl.h>
+# include <stdio.h>
 
 /* Stores all mlx related data */
 
@@ -77,4 +78,5 @@ void	initialize_variables(t_var *var);
 void	errors(char *str);
 t_point	*new_point(t_point *point);
 void	check_line(char *str);
+void	check_nodes(t_point *point);
 #endif
