@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:04:24 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/19 17:21:28 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/07/20 18:38:14 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ void	initialize_variables(t_var *var)
 	var->ret = 0;
 	var->length = 0;
 	var->start = 0;
+	var->delta_x = 0;
+	var->delta_y = 0;
+	var->bresenham = 0;
 }
 
 /*Creates a new point and sets the old point to point to the new point.*/
