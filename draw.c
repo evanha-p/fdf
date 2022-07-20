@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:53:43 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/20 19:16:39 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/07/20 19:24:04 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,11 @@ int	draw_line(t_mlx *mlx, t_line *line)
  *The derivation process for the algorithms is relatively simple albeit a long
  *one so I don't have space to show it here.
  *
- *In general bresenham's algorithm checks if we are closer to the pixel
+ *In general bresenham's algorithm deals with situations where
+ *the actual line goes through two pixels (so basically every case where
+ *the slope is other than 1). Since we can only choose
+ *one of the pixels we have to decide which one to choose.
+ *The algorithm checks if we are closer to the pixel
  *below or above and reacts accordingly. You have to imagine a "space"
  *between the pixels for this to make sense.
  *Example:
