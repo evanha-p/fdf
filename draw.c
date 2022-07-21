@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:53:43 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/20 19:24:04 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/07/21 18:12:31 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,18 +122,11 @@ int	draw_line(t_mlx *mlx, t_line *line)
  *we do incerement the y.
  *
  *!!Note!!:
- *the function below only works for lines where m (=the slope) < 1.
+ *the function below only works for lines where 0 < slope(=m) < 1.
  */
 
-void	draw_bresenham(t_mlx *mlx, t_line *line)
+void	gentle_slope(t_mlx *mlx, t_line *line, t_var v)
 {
-	t_var	v;
-
-	initialize_variables(&v);
-	v.delta_x = line->end_x - line->start_x;
-	v.delta_y = line->end_y - line->start_y;
-	v.x_coord = line->start_x;
-	v.y_coord = line->start_y;
 	v.bresenham = 2 * v.delta_y - v.delta_x;
 	while (v.x_coord <= line->end_x)
 	{
@@ -147,4 +140,75 @@ void	draw_bresenham(t_mlx *mlx, t_line *line)
 		}
 		v.x_coord++;
 	}
+}
+
+/*
+ *Function below uses same princible as mentioned above.
+ *However in this case the slope is greater than 1 so
+ *instead of always increasing x coordinate by one and checking
+ *whether we should increase the y coordinate or not we do the opposite.
+ *(That is we always increase y and check if we should also increase x or not)
+ *
+ *In this case we also measure a distance between the point and pixel
+ *like mentioned above but we measure the distance in x value, not in y
+ *so the variables are flipped.
+ *
+ *Example:
+ *
+ *              actual location for the point according to line equation y = mx + c
+ *             /
+ *    .---.	  |	  .---.
+ *    |   | --x---|   | <- pixel 2 ( x + 1, y)
+ *    '---' \   \ '---'
+ *      ^    \   distance 2
+ *      |	  \
+ *      |	   distance 1
+ *    pixel 1 (x, y)
+ *
+ */
+
+void	steep_slope(t_mlx *mlx, t_line *line, t_var v)
+{
+	v.bresenham = 2 * v.delta_x - v.delta_y;
+	while (v.y_coord <= line->end_y)
+	{
+		mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, v.x_coord, v.y_coord, 0xFFFFFF);
+		if (v.bresenham < 0)
+			v.bresenham = v.bresenham + 2 * v.delta_x;
+		else
+		{
+			v.bresenham = v.bresenham + 2 * v.delta_x - 2 * v.delta_y;
+			v.x_coord++;
+		}
+		v.y_coord++;
+	}
+}
+
+/*
+ *The main function that gets called when drawing a line.
+ *Calculates all necessary variables we need EXCEPT the
+ *decision parameter v.bresenham since it is calculated
+ *differently depengin if the slope is greater or less than 1.
+ *
+ *In function below we calculate the slope and depending if
+ *it is greater or less than one we call either function
+ *steep_slope(if slope > 1) or gentle_slope(if 0 < slope < 1)
+ */
+
+void	draw_bresenham(t_mlx *mlx, t_line *line)
+{
+	double	slope;
+	t_var	v;
+
+	initialize_variables(&v);
+	v.delta_x = line->end_x - line->start_x;
+	v.delta_y = line->end_y - line->start_y;
+	v.x_coord = line->start_x;
+	v.y_coord = line->start_y;
+
+	slope = (line->end_y - line->start_y) / (line->end_x - line->start_x);
+	if (slope < 1)
+		gentle_slope(mlx, line, v);
+	else
+		steep_slope(mlx, line, v);
 }

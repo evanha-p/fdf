@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:56:51 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/20 19:16:44 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/07/21 18:09:47 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ int	main(/*int argc, char **argv*/)
 	line->start_x = 0;
 	line->start_y = 0;
 	line->end_x = 1000;
-	line->end_y = 500;
+	line->end_y = 1000;
 	draw_bresenham(mlx, line);
-	line->start_x = 0;
-	line->start_y = 20;
-	line->end_x = 1000;
-	line->end_y = 520;
+	line->start_x = 50;
+	line->start_y = 0;
+	line->end_x = 1050;
+	line->end_y = 1000;
 	draw_line(mlx, line);
 	mlx_loop(mlx->mlx_ptr);
 	return (0);
