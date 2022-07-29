@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:04:24 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/20 18:38:14 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/07/29 19:32:26 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,32 @@ t_point	*new_point(t_point *point)
 		errors("null pointer");
 	point->next = next;
 	return (next);
+}
+
+t_point	*scope(int scope, t_point *point)
+{
+	t_point	*tmp;
+
+	tmp = point;
+	while (point)
+	{
+		point->x *= scope;
+		point->y *= scope;
+		point = point->next;
+	}
+	return (tmp);
+}
+
+t_point	*nudge(int nudge, t_point *point)
+{
+	t_point	*tmp;
+
+	tmp = point;
+	while (point)
+	{
+		point->x += nudge;
+		point->y += nudge;
+		point = point->next;
+	}
+	return (tmp);
 }

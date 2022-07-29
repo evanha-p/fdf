@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:53:43 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/29 18:26:41 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/07/29 19:51:09 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,23 +206,40 @@ void	draw_bresenham(t_mlx *mlx, t_point *start, t_point *end)
 	v.x_coord = start->x;
 	v.y_coord = start->y;
 
-	slope = (v.delta_y/v.delta_x);
+	if (v.delta_x == 0)
+		slope = 1;
+	else
+		slope = (v.delta_y/v.delta_x);
 	if (slope < 1)
 		gentle_slope(mlx, end, v);
 	else
 		steep_slope(mlx, end, v);
 }
 
-/*
- *void	draw_map(t_point points)
- *{
- *    t_var	v;
- *    t_line	line;
- *
- *    initialize_variables(&v);
- *    while (points->next)
- *    {
- *        
- *    }
- *}
- */
+void	draw_map(t_mlx *mlx, t_point *point)
+{
+	t_point	*temp;
+	t_point *next;
+
+	while (point->next)
+	{
+		next = point->next;
+		temp = point;
+		if (point->y != next->y)
+		{
+			while (temp->x != point->x && point->next)
+				point = point->next;
+			draw_bresenham(mlx, temp, point);
+			point = next;
+			continue;
+		}
+		draw_bresenham(mlx, point, next);
+		point = point->next;	
+		while (temp->x != point->x && point->next)
+			point = point->next;
+		if (!point->next)
+			break;
+		draw_bresenham(mlx, temp, point);
+		point = next;
+	}
+}
