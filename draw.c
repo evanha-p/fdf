@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:53:43 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/21 18:12:31 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/07/29 18:26:41 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,10 +125,10 @@ int	draw_line(t_mlx *mlx, t_line *line)
  *the function below only works for lines where 0 < slope(=m) < 1.
  */
 
-void	gentle_slope(t_mlx *mlx, t_line *line, t_var v)
+void	gentle_slope(t_mlx *mlx, t_point *end, t_var v)
 {
 	v.bresenham = 2 * v.delta_y - v.delta_x;
-	while (v.x_coord <= line->end_x)
+	while (v.x_coord <= end->y)
 	{
 		mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, v.x_coord, v.y_coord, 0xFFFFFF);
 		if (v.bresenham < 0)
@@ -167,10 +167,10 @@ void	gentle_slope(t_mlx *mlx, t_line *line, t_var v)
  *
  */
 
-void	steep_slope(t_mlx *mlx, t_line *line, t_var v)
+void	steep_slope(t_mlx *mlx, t_point *end, t_var v)
 {
 	v.bresenham = 2 * v.delta_x - v.delta_y;
-	while (v.y_coord <= line->end_y)
+	while (v.y_coord <= end->y)
 	{
 		mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, v.x_coord, v.y_coord, 0xFFFFFF);
 		if (v.bresenham < 0)
@@ -195,20 +195,34 @@ void	steep_slope(t_mlx *mlx, t_line *line, t_var v)
  *steep_slope(if slope > 1) or gentle_slope(if 0 < slope < 1)
  */
 
-void	draw_bresenham(t_mlx *mlx, t_line *line)
+void	draw_bresenham(t_mlx *mlx, t_point *start, t_point *end)
 {
 	double	slope;
 	t_var	v;
 
 	initialize_variables(&v);
-	v.delta_x = line->end_x - line->start_x;
-	v.delta_y = line->end_y - line->start_y;
-	v.x_coord = line->start_x;
-	v.y_coord = line->start_y;
+	v.delta_x = end->x - start->x;
+	v.delta_y = end->y - start->y;
+	v.x_coord = start->x;
+	v.y_coord = start->y;
 
-	slope = (line->end_y - line->start_y) / (line->end_x - line->start_x);
+	slope = (v.delta_y/v.delta_x);
 	if (slope < 1)
-		gentle_slope(mlx, line, v);
+		gentle_slope(mlx, end, v);
 	else
-		steep_slope(mlx, line, v);
+		steep_slope(mlx, end, v);
 }
+
+/*
+ *void	draw_map(t_point points)
+ *{
+ *    t_var	v;
+ *    t_line	line;
+ *
+ *    initialize_variables(&v);
+ *    while (points->next)
+ *    {
+ *        
+ *    }
+ *}
+ */

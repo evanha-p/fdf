@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:56:51 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/21 18:09:47 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/07/29 18:27:15 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,17 @@ int	main(/*int argc, char **argv*/)
 {
 	t_mlx	*mlx;
 	t_line	*line;
+	t_point	*start;
+	t_point	*end;
 
 	mlx = (t_mlx *)malloc(sizeof(t_mlx));
 	line = (t_line *)malloc(sizeof(t_line));
+	start = (t_point *)malloc(sizeof(t_point));
+	end = (t_point *)malloc(sizeof(t_point));
+	start->x = 100;
+	start->y = 0;
+	end->x = 1100;
+	end->y = 1000;
 	if (!mlx || !line)
 		return (1);
 	mlx->mlx_ptr = mlx_init();
@@ -27,7 +35,7 @@ int	main(/*int argc, char **argv*/)
 	line->start_y = 0;
 	line->end_x = 1000;
 	line->end_y = 1000;
-	draw_bresenham(mlx, line);
+	draw_bresenham(mlx, start, end);
 	line->start_x = 50;
 	line->start_y = 0;
 	line->end_x = 1050;

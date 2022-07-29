@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/21 17:50:54 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/07/29 18:21:23 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	errors(char *str);
 t_point	*new_point(t_point *point);
 void	check_line(char *str);
 void	check_nodes(t_point *point);
-void	draw_bresenham(t_mlx *mlx, t_line *line);
-void	gentle_slope(t_mlx *mlx, t_line *line, t_var v);
-void	steep_slope(t_mlx *mlx, t_line *line, t_var v);
+void	draw_bresenham(t_mlx *mlx, t_point *start, t_point *end);
+void	gentle_slope(t_mlx *mlx, t_point *end, t_var v);
+void	steep_slope(t_mlx *mlx, t_point *end, t_var v);
 #endif
