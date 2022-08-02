@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/29 19:31:02 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/08/02 14:11:25 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef struct s_var
 	int		bresenham;
 }	t_var;
 
-int		draw_line(t_mlx *mlx, t_line *line);
+int		draw_line(t_mlx *mlx, t_point start, t_point end);
 t_point	*reader(char *argv);
 void	initialize_variables(t_var *var);
 void	errors(char *str);

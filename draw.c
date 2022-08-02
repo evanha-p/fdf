@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:53:43 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/29 19:51:09 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/08/02 14:13:51 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,23 +54,23 @@
  *So we need to add the value of y at the beginning to get the correct
  *value for the y coordinate.
  */
-int	draw_line(t_mlx *mlx, t_line *line)
+int	draw_line(t_mlx *mlx, t_point start, t_point end)
 {
 	double	distance_x;
 	double	distance_y;
 	double	tan_a;
 	double	location_y;
 
-	distance_x = line->end_x - line->start_x;
-	distance_y = line->end_y - line->start_y;
+	distance_x = end.x - start.x;
+	distance_y = end.y - start.y;
 	tan_a = distance_y / distance_x;
 	distance_x = 0;
-	while (line->start_x <= line->end_x)
+	while (start.x <= end.x)
 	{
-		location_y = line->start_y + (tan_a * distance_x);
+		location_y = start.y + (tan_a * distance_x);
 		mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, \
-		line->start_x, location_y, 0xFFFFFF);
-		line->start_x++;
+		start.x, location_y, 0xFFFFFF);
+		start.x++;
 		distance_x++;
 	}
 	return (0);
@@ -210,36 +210,31 @@ void	draw_bresenham(t_mlx *mlx, t_point *start, t_point *end)
 		slope = 1;
 	else
 		slope = (v.delta_y/v.delta_x);
-	if (slope < 1)
+	if (slope < 1 && slope > 0)
 		gentle_slope(mlx, end, v);
-	else
+	else if (slope >= 1)
 		steep_slope(mlx, end, v);
+	else
+		v.x_coord = start->x;
+		while (v.x_coord <= end->x)
+		{
+			mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, v.x_coord, start->y, 0xFFFFFF);
+			v.x_coord++;
+		}
 }
 
 void	draw_map(t_mlx *mlx, t_point *point)
 {
-	t_point	*temp;
 	t_point *next;
 
+	next = point->next;
 	while (point->next)
 	{
 		next = point->next;
-		temp = point;
-		if (point->y != next->y)
-		{
-			while (temp->x != point->x && point->next)
-				point = point->next;
-			draw_bresenham(mlx, temp, point);
-			point = next;
-			continue;
-		}
 		draw_bresenham(mlx, point, next);
-		point = point->next;	
-		while (temp->x != point->x && point->next)
-			point = point->next;
-		if (!point->next)
-			break;
-		draw_bresenham(mlx, temp, point);
-		point = next;
+		while (point->x != next->x && next->next)
+			next = next->next;
+		draw_bresenham(mlx, point, next);
+		point = point->next;
 	}
 }
