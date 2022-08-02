@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:04:24 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/29 19:32:26 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/08/02 14:33:50 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,68 @@ t_point	*nudge(int nudge, t_point *point)
 		point = point->next;
 	}
 	return (tmp);
+}
+
+/*
+ *Draw_line function uses tan a to calculate the location for y.
+ *Since we can form a right triangle from one point to next
+ *
+ *we can use trigonometric functions to calculate value of y
+ *everytime we increase the value of x by 1.
+ *The right triangle is formed with:
+ *- line between start and finish being the hypotenuse
+ *- Difference from x at start to finish and from y at start to finish
+ *  being the cathetuses
+ *
+ *Example:
+ *                      finish
+ *                         x
+ *                     .   |
+ *                  .      |
+ *              .          | y
+ *    	     .             |
+ * 	     .                 |
+ *     x - - - - - - - - - /
+ *   start        x
+ *
+ *First we calcute the length of x and y (the sides of the triangle) by
+ *substracting the x and y values at the end by the x and y values 
+ *at the start.
+ *
+ *length of x = x coordinate at end - x coordinate at beginning
+ *(same for the y value)
+ *
+ *With that we calculate tan a.
+ *
+ *tan a = y/x
+ *
+ *When we have solved tan a we can use it to calculate the values of y
+ *when value of x changes.
+ *
+ *y = tan a * x
+ *
+ *Note: function above gives the amount the y value has increased.
+ *So we need to add the value of y at the beginning to get the correct
+ *value for the y coordinate.
+ */
+int	draw_line(t_mlx *mlx, t_point start, t_point end)
+{
+	double	distance_x;
+	double	distance_y;
+	double	tan_a;
+	double	location_y;
+
+	distance_x = end.x - start.x;
+	distance_y = end.y - start.y;
+	tan_a = distance_y / distance_x;
+	distance_x = 0;
+	while (start.x <= end.x)
+	{
+		location_y = start.y + (tan_a * distance_x);
+		mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, \
+		start.x, location_y, 0xFFFFFF);
+		start.x++;
+		distance_x++;
+	}
+	return (0);
 }
