@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:04:24 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/08/02 14:33:50 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/08/02 15:35:41 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,15 @@ t_point	*new_point(t_point *point)
 		errors("null pointer");
 	point->next = next;
 	return (next);
+}
+
+int	get_color(int height)
+{
+	if (height > 0)
+		height = 0xFFFFFF - (1000 *  0xFF - height) - (0xFF - height);
+	else
+		height = 0xFFFFFF;
+	return (height);
 }
 
 t_point	*scope(int scope, t_point *point)

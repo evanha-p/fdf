@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:53:43 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/08/02 14:44:12 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/08/02 15:07:17 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	draw_straight(t_mlx *mlx, t_point *start, t_point *end)
 	while (v.x_coord <= end->x)
 	{
 		mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, v.x_coord, \
-				start->y, 0xFFFFFF);
+				start->y, get_color(end->z));
 		v.x_coord++;
 	}
 }
@@ -86,7 +86,7 @@ void	gentle_slope(t_mlx *mlx, t_point *end, t_var v)
 	while (v.x_coord <= end->y)
 	{
 		mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, v.x_coord, \
-				v.y_coord, 0xFFFFFF);
+				v.y_coord, get_color(end->z));
 		if (v.bresenham < 0)
 			v.bresenham = v.bresenham + 2 * v.delta_y;
 		else
@@ -128,7 +128,7 @@ void	steep_slope(t_mlx *mlx, t_point *end, t_var v)
 	while (v.y_coord <= end->y)
 	{
 		mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, v.x_coord, \
-				v.y_coord, 0xFFFFFF);
+				v.y_coord, get_color(end->z));
 		if (v.bresenham < 0)
 			v.bresenham = v.bresenham + 2 * v.delta_x;
 		else
