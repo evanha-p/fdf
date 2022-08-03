@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/08/02 15:05:59 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/08/03 16:32:51 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,10 @@ void	draw_bresenham(t_mlx *mlx, t_point *start, t_point *end);
 void	gentle_slope(t_mlx *mlx, t_point *end, t_var v);
 void	steep_slope(t_mlx *mlx, t_point *end, t_var v);
 void	draw_map(t_mlx *mlx, t_point *point);
-void	draw_straight(t_mlx *mlx, t_point *start, t_point *end);
+void	draw_straight(t_mlx *mlx, t_point *start, t_point *end, t_var v);
 t_point	*scope(int scope, t_point *point);
 t_point *nudge(int nudge, t_point *point);
 int		get_color(int height);
+t_point	*cartesian_to_isometric(t_point *points);
+void	drawing_loop(t_point *start, t_point *end, t_mlx *mlx, char *str);
 #endif

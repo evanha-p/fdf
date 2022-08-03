@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:53:43 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/08/02 15:07:17 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/08/03 17:47:03 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,39 @@
 
 /*
 This function gets called if the slope = 0.
-So the function only draws "straight" lines where the
-value of y stays the same.
+Note!: The slope might not actually be 0 (for example if the
+delta x = 0) but for simplicity we set the slope to 0
+in the draw_bresenham function whenever either delta x or
+delta y is 0 and react accordingly in this function.
+
+The function only draws "straight" lines where the
+value of y  or x stays the same.
+
+If the other value is 0 and the other is negative
+we need to flip the points so we can draw the line.
+
+For example:
+v.delta_y = 0 and v.delta_x > 0
+The starting point will be on the left and the end on the right.
+If v.delta_x < 0 the end will be on the left and the start
+will be on the right so we need to draw the line from right to left.
+In that case we simply flip the points we send to function
+drawing_loop so it will consider the true starting point
+as the end and vice versa.
+
+The draw_straight function is located in utils.c
 */
 
-void	draw_straight(t_mlx *mlx, t_point *start, t_point *end)
+void	draw_straight(t_mlx *mlx, t_point *start, t_point *end, t_var v)
 {
-	t_var	v;
-
-	initialize_variables(&v);
-	v.x_coord = start->x;
-	while (v.x_coord <= end->x)
-	{
-		mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, v.x_coord, \
-				start->y, get_color(end->z));
-		v.x_coord++;
-	}
+	if (v.delta_y == 0 && v.delta_x > 0)
+		drawing_loop(start, end, mlx, "horizontal");
+	else if (v.delta_y == 0 && v.delta_x < 0)
+		drawing_loop(end, start, mlx, "horizontal");
+	else if (v.delta_x == 0 && v.delta_y > 0)
+		drawing_loop(start, end, mlx, "vertical");
+	else
+		drawing_loop(end, start, mlx, "vertical");
 }
 /*
 This function uses bresenham's algorithm to decide whether to increment the
@@ -160,16 +177,25 @@ void	draw_bresenham(t_mlx *mlx, t_point *start, t_point *end)
 	v.delta_y = end->y - start->y;
 	v.x_coord = start->x;
 	v.y_coord = start->y;
-	if (v.delta_x == 0)
-		slope = 1;
+	if (v.delta_x == 0 || v.delta_y == 0)
+		slope = 0;
 	else
 		slope = v.delta_y / v.delta_x;
 	if (slope < 1 && slope > 0)
 		gentle_slope(mlx, end, v);
 	else if (slope >= 1)
 		steep_slope(mlx, end, v);
+	else if (slope < 0)
+	{
+		v.x_coord = end->x;
+		v.y_coord = end->y;
+		if (slope >= -1)
+			steep_slope(mlx, start, v);
+		else
+			gentle_slope(mlx, start, v);
+	}
 	else
-		draw_straight(mlx, start, end);
+		draw_straight(mlx, start, end, v);
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:04:24 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/08/02 15:35:41 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/08/03 17:34:35 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,36 +46,38 @@ int	get_color(int height)
 		height = 0xFFFFFF - (1000 *  0xFF - height) - (0xFF - height);
 	else
 		height = 0xFFFFFF;
-	return (height);
+	return (0xFFFFFF);
 }
 
-t_point	*scope(int scope, t_point *point)
+/*Helper function for draw_straight. Does the drawing.*/
+
+void	drawing_loop(t_point *start, t_point *end, t_mlx *mlx, char *str)
 {
-	t_point	*tmp;
+	t_var	v;
 
-	tmp = point;
-	while (point)
+	initialize_variables(&v);
+	v.x_coord = start->x;
+	v.y_coord = start->y;
+	if (!(ft_strcmp("horizontal", str)))
 	{
-		point->x *= scope;
-		point->y *= scope;
-		point = point->next;
+		while (v.x_coord <= end->x)
+		{
+			mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, v.x_coord, \
+					end->y, get_color(end->z));
+			v.x_coord++;
+		}
 	}
-	return (tmp);
+	else
+	{
+		while (v.y_coord <= end->y)
+		{
+			mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, end->x, \
+					v.y_coord, get_color(end->z));
+			v.y_coord++;
+		}
+	}
 }
 
-t_point	*nudge(int nudge, t_point *point)
-{
-	t_point	*tmp;
-
-	tmp = point;
-	while (point)
-	{
-		point->x += nudge;
-		point->y += nudge;
-		point = point->next;
-	}
-	return (tmp);
-}
 
 /*
  *Draw_line function uses tan a to calculate the location for y.
