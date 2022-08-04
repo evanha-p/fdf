@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:53:43 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/08/03 17:54:06 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/08/04 17:14:18 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,7 @@ steep_slope(if slope > 1) or gentle_slope(if 0 < slope < 1)
 
 void	draw_bresenham(t_mlx *mlx, t_point *start, t_point *end)
 {
-	double	slope;
+	float	slope;
 	t_var	v;
 
 	initialize_variables(&v);
@@ -178,24 +178,24 @@ void	draw_bresenham(t_mlx *mlx, t_point *start, t_point *end)
 	v.x_coord = start->x;
 	v.y_coord = start->y;
 	if (v.delta_x == 0 || v.delta_y == 0)
-		slope = 0;
-	else
-		slope = v.delta_y / v.delta_x;
-	if (slope < 1 && slope > 0)
-		gentle_slope(mlx, end, v);
-	else if (slope >= 1)
-		steep_slope(mlx, end, v);
-	else if (slope < 0)
-	{
-		v.x_coord = end->x;
-		v.y_coord = end->y;
-		if (slope >= -1)
-			steep_slope(mlx, start, v);
-		else
-			gentle_slope(mlx, start, v);
-	}
-	else
 		draw_straight(mlx, start, end, v);
+	else	
+	{
+		slope = (float)v.delta_y / (float)v.delta_x;
+		if (slope < 1 && slope > 0)
+			gentle_slope(mlx, end, v);
+		else/* if (slope >= 1)*/
+			steep_slope(mlx, end, v);
+		/*else if (v.delta_x < 0 || v.delta_y < 0)*/
+		/*{*/
+			/*v.x_coord = end->x;*/
+			/*v.y_coord = end->y;*/
+			/*if (slope <= -1)*/
+				/*steep_slope(mlx, start, v);*/
+			/*else*/
+				/*gentle_slope(mlx, start, v);*/
+		/*}*/
+	}
 }
 
 /*
@@ -218,14 +218,15 @@ void	draw_map(t_mlx *mlx, t_point *point)
 {
 	t_point	*next;
 
-	next = point->next;
 	while (point->next)
 	{
 		next = point->next;
-		draw_bresenham(mlx, point, next);
-		while (point->x != next->x && next->next)
+		if (point->cart_y == next->cart_y)
+			draw_bresenham(mlx, point, next);
+		while (point->cart_x != next->cart_x && next->next)
 			next = next->next;
-		draw_bresenham(mlx, point, next);
+		if (point->cart_x == next->cart_x)
+			draw_bresenham(mlx, point, next);
 		point = point->next;
 	}
 }

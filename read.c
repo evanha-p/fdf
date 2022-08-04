@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:43:51 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/20 14:54:58 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/08/04 16:33:04 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ static	void	set_point_values(t_point *point, t_bool boolean, \
 		t_var variables, char *line)
 {
 	point->x = variables.x_coord;
+	point->cart_x = variables.x_coord;
 	point->y = variables.y_coord;
+	point->cart_y = variables.y_coord;
 	if (boolean)
 	{
 		point->exists = true;

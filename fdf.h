@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/08/03 16:32:51 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/08/04 16:09:08 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ struct s_point
 	int		x;
 	int		y;
 	int		z;
+	int		cart_x;
+	int		cart_y;
 	t_point	*next;
 };
 
@@ -92,4 +94,5 @@ t_point *nudge(int nudge, t_point *point);
 int		get_color(int height);
 t_point	*cartesian_to_isometric(t_point *points);
 void	drawing_loop(t_point *start, t_point *end, t_mlx *mlx, char *str);
+void	draw_dot(t_mlx *mlx, t_point *points);
 #endif

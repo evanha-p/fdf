@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 13:48:35 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/08/03 14:54:03 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/08/04 16:33:49 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ t_point	*nudge(int nudge, t_point *point)
 	tmp = point;
 	while (point)
 	{
-		point->x += nudge;
-		point->y += nudge;
+		point->x = point->x + point->x + 1.5 * nudge;
+		point->y += point->y;
 		point = point->next;
 	}
 	return (tmp);
@@ -53,6 +53,8 @@ t_point	*cartesian_to_isometric(t_point *points)
 		y = points->y;
 		points->x = x - y;
 		points->y = (x + y) / 2;
+		/*points->x = (x - points->z) / sqrt(2);*/
+		/*points->y = (x + y + y + points->z) / sqrt(6);*/
 		points = points->next;
 	}
 	points = temp;

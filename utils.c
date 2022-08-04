@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:04:24 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/08/03 17:34:35 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/08/04 16:00:27 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,14 @@ t_point	*new_point(t_point *point)
 
 int	get_color(int height)
 {
-	if (height > 0)
-		height = 0xFFFFFF - (1000 *  0xFF - height) - (0xFF - height);
+	if (height == 0)
+		return (0xFF0000);
+	else if (height == 1)
+		return (0xFFFF00);
+	else if (height == 2)
+		return (0x1FFF00);
 	else
-		height = 0xFFFFFF;
-	return (0xFFFFFF);
+		return (0x000FFF);
 }
 
 /*Helper function for draw_straight. Does the drawing.*/
@@ -141,4 +144,18 @@ int	draw_line(t_mlx *mlx, t_point start, t_point end)
 		distance_x++;
 	}
 	return (0);
+}
+
+void	draw_dot(t_mlx *mlx, t_point *points)
+{
+	t_point	*temp;
+
+	temp = points;
+	while (points)
+	{
+		mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, points->x, \
+				points->y, get_color(points->z));
+		points = points->next;
+	}
+	points = temp;
 }
