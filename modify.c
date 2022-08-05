@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 13:48:35 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/08/04 16:33:49 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/08/05 19:23:58 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,7 @@ t_point	*cartesian_to_isometric(t_point *points)
 		x = points->x;
 		y = points->y;
 		points->x = x - y;
-		points->y = (x + y) / 2;
-		/*points->x = (x - points->z) / sqrt(2);*/
-		/*points->y = (x + y + y + points->z) / sqrt(6);*/
+		points->y = (x + y) / 2 - points->z;
 		points = points->next;
 	}
 	points = temp;

@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:53:43 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/08/05 16:42:44 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/08/05 17:28:21 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,12 +227,12 @@ void	draw_map(t_mlx *mlx, t_point *point)
 	while (point->next)
 	{
 		next = point->next;
-		if (point->cart_y == next->cart_y)
+		if (point->cart_y == next->cart_y && next->next)
 			draw_bresenham(mlx, point, next);
 		while (point->cart_x != next->cart_x && next->next)
 			next = next->next;
-		if (point->cart_x == next->cart_x)
-			draw_bresenham(mlx, point, next);
+		if (point->cart_x == next->cart_x && next->next)
+			draw_bresenham(mlx, next, point);
 		point = point->next;
 	}
 }
