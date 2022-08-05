@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:53:43 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/08/04 17:14:18 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/08/05 16:42:44 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,14 @@ we do incerement the y.
 the function below only works for lines where 0 < slope(=m) < 1.
 */
 
-void	gentle_slope(t_mlx *mlx, t_point *end, t_var v)
+void	gentle_slope(t_mlx *mlx, t_point *start, t_point *end, t_var v)
 {
+	v.x_coord = start->x;
+	v.y_coord = start->y;
+	v.delta_y = fabs((double)v.delta_y);
+	v.delta_x = fabs((double)v.delta_x);
 	v.bresenham = 2 * v.delta_y - v.delta_x;
-	while (v.x_coord <= end->y)
+	while (v.x_coord != end->x)
 	{
 		mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, v.x_coord, \
 				v.y_coord, get_color(end->z));
@@ -111,7 +115,10 @@ void	gentle_slope(t_mlx *mlx, t_point *end, t_var v)
 			v.bresenham = v.bresenham + 2 * v.delta_y - 2 * v.delta_x;
 			v.y_coord++;
 		}
-		v.x_coord++;
+		if (v.slope > 0)
+			v.x_coord++;
+		else
+			v.x_coord--;
 	}
 }
 
@@ -139,10 +146,14 @@ Example:
 	pixel 1 (x, y)
 */
 
-void	steep_slope(t_mlx *mlx, t_point *end, t_var v)
+void	steep_slope(t_mlx *mlx, t_point *start, t_point *end, t_var v)
 {
+	v.x_coord = start->x;
+	v.y_coord = start->y;
+	v.delta_y = fabs((double)v.delta_y);
+	v.delta_x = fabs((double)v.delta_x);
 	v.bresenham = 2 * v.delta_x - v.delta_y;
-	while (v.y_coord <= end->y)
+	while (v.y_coord != end->y)
 	{
 		mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, v.x_coord, \
 				v.y_coord, get_color(end->z));
@@ -151,7 +162,10 @@ void	steep_slope(t_mlx *mlx, t_point *end, t_var v)
 		else
 		{
 			v.bresenham = v.bresenham + 2 * v.delta_x - 2 * v.delta_y;
-			v.x_coord++;
+			if (v.slope > 0)
+				v.x_coord++;
+			else
+				v.x_coord--;
 		}
 		v.y_coord++;
 	}
@@ -169,32 +183,24 @@ steep_slope(if slope > 1) or gentle_slope(if 0 < slope < 1)
 
 void	draw_bresenham(t_mlx *mlx, t_point *start, t_point *end)
 {
-	float	slope;
 	t_var	v;
 
 	initialize_variables(&v);
 	v.delta_x = end->x - start->x;
 	v.delta_y = end->y - start->y;
-	v.x_coord = start->x;
-	v.y_coord = start->y;
 	if (v.delta_x == 0 || v.delta_y == 0)
 		draw_straight(mlx, start, end, v);
 	else	
 	{
-		slope = (float)v.delta_y / (float)v.delta_x;
-		if (slope < 1 && slope > 0)
-			gentle_slope(mlx, end, v);
-		else/* if (slope >= 1)*/
-			steep_slope(mlx, end, v);
-		/*else if (v.delta_x < 0 || v.delta_y < 0)*/
-		/*{*/
-			/*v.x_coord = end->x;*/
-			/*v.y_coord = end->y;*/
-			/*if (slope <= -1)*/
-				/*steep_slope(mlx, start, v);*/
-			/*else*/
-				/*gentle_slope(mlx, start, v);*/
-		/*}*/
+		v.slope = (float)v.delta_y / (float)v.delta_x;
+		if (v.slope < 1 && v.slope > 0)
+			gentle_slope(mlx, start, end, v);
+		else if (v.slope >= 1)
+			steep_slope(mlx, start, end, v);
+		else if (v.slope > -1 && v.slope < 0)
+			gentle_slope(mlx, end, start, v);
+		else
+			steep_slope(mlx, end, start, v);
 	}
 }
 

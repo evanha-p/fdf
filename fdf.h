@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/08/04 16:09:08 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/08/05 16:03:02 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct s_var
 	int		delta_x;
 	int		delta_y;
 	int		bresenham;
+	float	slope;
 }	t_var;
 
 int		draw_line(t_mlx *mlx, t_point start, t_point end);
@@ -85,8 +86,8 @@ t_point	*new_point(t_point *point);
 void	check_line(char *str);
 void	check_nodes(t_point *point);
 void	draw_bresenham(t_mlx *mlx, t_point *start, t_point *end);
-void	gentle_slope(t_mlx *mlx, t_point *end, t_var v);
-void	steep_slope(t_mlx *mlx, t_point *end, t_var v);
+void	gentle_slope(t_mlx *mlx, t_point *start, t_point *end, t_var v);
+void	steep_slope(t_mlx *mlx, t_point *start, t_point *end, t_var v);
 void	draw_map(t_mlx *mlx, t_point *point);
 void	draw_straight(t_mlx *mlx, t_point *start, t_point *end, t_var v);
 t_point	*scope(int scope, t_point *point);

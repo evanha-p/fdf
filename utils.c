@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:04:24 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/08/04 16:00:27 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/08/05 16:00:20 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	initialize_variables(t_var *var)
 	var->delta_x = 0;
 	var->delta_y = 0;
 	var->bresenham = 0;
+	var->slope = 0;
 }
 
 /*Creates a new point and sets the old point to point to the new point.*/
@@ -42,14 +43,10 @@ t_point	*new_point(t_point *point)
 
 int	get_color(int height)
 {
-	if (height == 0)
-		return (0xFF0000);
-	else if (height == 1)
-		return (0xFFFF00);
-	else if (height == 2)
-		return (0x1FFF00);
+	if (height)
+		return (0xFFFFFF);
 	else
-		return (0x000FFF);
+		return (0xFFFFFF);
 }
 
 /*Helper function for draw_straight. Does the drawing.*/
