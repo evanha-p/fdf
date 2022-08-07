@@ -12,17 +12,29 @@
 
 #include "fdf.h"
 
-static	int	find_longest_node(char *str, t_var v)
+static	void	find_longest_node(char *argv)
 {
 	char	**temp_arr;
+	char	*line;
+	t_var	v;
 
-	temp_arr = ft_strsplit(str, ' ');
-	while (temp_arr[v.i])
+	initialize_variables(&v);
+	v.ret = 1;
+	v.fd = open(argv, O_RDONLY);
+	if (fd < 0)
+		errors("file does not exist");
+	while (v.ret > 0)
 	{
-		if (ft_strlen(temp_arr[v.i]) > v.node_max_len)
-			node_max_len = ft_strlen(temp_arr[v.i]);
-		v.i++;
+		v.ret =  get_next_line(v.fd, &line);
+		temp_arr = ft_strsplit(line, ' ');
+		while (temp_arr(v.i))
+		{
+			if (ft_strlen(temp_arr[v.i]) > v.node_max_len)
+				node_max_len = ft_strlen(temp_arr[v.i]);
+			v.i++;
+		}
 	}
+	close(v.fd);
 	return (v.node_max_len);
 }
 
@@ -30,19 +42,20 @@ t_point	*reader_new(char *argv)
 {
 	t_point	*head;
 	t_point	*temp;
-	t_var		v;
+	t_var		*v;
 	char		*line;
 
-	initialize_variables(&v);
+	initialize_variables(v);
 	v.ret = 1;
+	v->node_max_len = find_longest_node(argv);
 	temp = (t_point *)malloc(sizeof(t_point));
 	head = temp;
-	v.fd = open(argv, O_RDONLY);
-	if (fd < 0)
+	v->fd = open(argv, O_RDONLY);
+	if (v->fd < 0)
 		errors("file does not exist");
-	while (v.ret > 0)
+	while (v->ret > 0)
 	{
-		v.ret = get_next_line(fd, &line);
-		v.node_max_len = find_longest_node(line, v);
+		v->ret = get_next_line(fd, &line);
+		check_line_new(line, v);
 	}
 }
