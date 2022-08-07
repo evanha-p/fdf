@@ -26,6 +26,8 @@ void	initialize_variables(t_var *var)
 	var->delta_y = 0;
 	var->bresenham = 0;
 	var->slope = 0;
+	var->node_max_len = 0;
+	var->fd = 0;
 }
 
 /*Creates a new point and sets the old point to point to the new point.*/

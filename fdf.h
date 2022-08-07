@@ -76,6 +76,8 @@ typedef struct s_var
 	int		delta_y;
 	int		bresenham;
 	float	slope;
+	int		node_max_len;
+	int		fd;
 }	t_var;
 
 int		draw_line(t_mlx *mlx, t_point start, t_point end);
