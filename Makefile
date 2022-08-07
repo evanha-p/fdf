@@ -11,8 +11,11 @@
 # **************************************************************************** #
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -L /usr/local/lib -lmlx -I /minilibx/ \
+# CFLAGS = -Wall -Wextra -Werror -L /usr/local/lib -lmlx -I /minilibx/ \
 		 -framework OpenGL -framework AppKit -g
+# Flags for compiling at home
+CFLAGS = -Wall -Wextra -Werror -L ./minilibx -lmlx -I ./minilibx \
+				 -framework OpenGL -framework AppKit -g
 NAME = fdf
 SRC = draw.c main.c read.c utils.c errors.c modify.c libft/libft.a
 OBJ = $(patsubst %.c, %.o, $(SRC))
