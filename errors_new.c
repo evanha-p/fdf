@@ -36,10 +36,25 @@ void	errors_new(char *str)
 
 void	check_node_new(char *str, t_var *v)
 {
+	v->spaces = 0;
 	if (str[v->i] == ' ')
 	{
 		while (str[v->i] == ' ')
+		{
 			v->i++;
+			v->spaces++;
+		}
+		if (v->spaces > (v->node_max_len + 1))
+			errors_new("too many spaces");
+	}
+	else
+	{
+		while (str[v->i] != ' ' && str[v->i])
+		{
+			if (!ft_isdigit(str[v->i]) && str[v->i] != ' ')
+				errors_new("invalid file content");
+			v->i++;
+		}
 	}
 }
 
@@ -48,8 +63,8 @@ void	check_line_new(char *line, t_var *v)
 	v->i = 0;
 	while (line[v->i])
 	{
-		if (line[v->i] != ' ' || !ft_isdigit(line[v->i]))
+		if (line[v->i] != ' ' && !ft_isdigit(line[v->i]))
 			errors_new("invalid file content");
-		check_node(*line[v->i], v);
+		check_node_new(&line[v->i], v);
 	}
 }

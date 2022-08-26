@@ -43,7 +43,7 @@ int	main(int argc, char **argv)
 	i = 0;
 	if (argc != 2)
 		return (0);
-	points = reader(argv[1]);
+	points = reader_new(argv[1]);
 	temp = points;
 	while (points->next)
 	{

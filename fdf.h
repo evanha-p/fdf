@@ -78,6 +78,7 @@ typedef struct s_var
 	float	slope;
 	int		node_max_len;
 	int		fd;
+	int		spaces;
 }	t_var;
 
 int		draw_line(t_mlx *mlx, t_point start, t_point end);
@@ -98,4 +99,8 @@ int		get_color(int height);
 t_point	*cartesian_to_isometric(t_point *points);
 void	drawing_loop(t_point *start, t_point *end, t_mlx *mlx, char *str);
 void	draw_dot(t_mlx *mlx, t_point *points);
+t_point *reader_new(char *argv);
+void	errors_new(char *str);
+void	check_node_new(char *str, t_var *v);
+void	check_line_new(char *line, t_var *v);
 #endif
