@@ -6,19 +6,18 @@
 #    By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/06 13:24:17 by evanha-p          #+#    #+#              #
-#    Updated: 2022/08/03 13:50:22 by evanha-p         ###   ########.fr        #
+#    Updated: 2022/09/08 15:33:11 by evanha-p         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-# CFLAGS = -Wall -Wextra -Werror -L /usr/local/lib -lmlx -I /minilibx/ \
+CFLAGS = -Wall -Wextra -Werror -L /usr/local/lib -lmlx -I /minilibx/ \
 		 -framework OpenGL -framework AppKit -g
 # Flags for compiling at home
-CFLAGS = -Wall -Wextra -Werror -L ./minilibx -lmlx -I ./minilibx \
+# CFLAGS = -Wall -Wextra -Werror -L ./minilibx -lmlx -I ./minilibx \
 				 -framework OpenGL -framework AppKit -g
 NAME = fdf
-SRC = draw.c main.c read.c utils.c errors.c modify.c errors_new.c \
-			reader_new.c libft/libft.a
+SRC = draw.c main.c utils.c  modify.c reader2.c errors2.c libft/libft.a
 OBJ = $(patsubst %.c, %.o, $(SRC))
 LIBFT = libft/
 

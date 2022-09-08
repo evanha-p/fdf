@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/08/05 16:03:02 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/09/08 16:36:30 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ typedef enum e_bool
 typedef struct s_point	t_point;
 struct s_point
 {
-	t_bool	exists;
 	int		x;
 	int		y;
 	int		z;

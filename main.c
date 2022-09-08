@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:56:51 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/08/05 19:38:00 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:15:43 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,49 +43,47 @@ int	main(int argc, char **argv)
 	i = 0;
 	if (argc != 2)
 		return (0);
-	points = reader_new(argv[1]);
+	points = reader(argv[1]);
 	temp = points;
-	while (points->next)
-	{
-		if (points->exists)
-			ft_putstr("REAL NODE\n");
-		else
-			ft_putstr("NO NODE\n");
-		ft_putnbr(points->x);
-		ft_putnbr(points->y);
-		ft_putnbr(points->z);
-		ft_putchar('\n');
-		ft_putstr("----------------\n");
-		points = points->next;
-		i++;
-	}
-	points = temp;
+	/*
+	 *while (points->next)
+	 *{
+	 *    ft_putnbr(points->x);
+	 *    ft_putnbr(points->y);
+	 *    ft_putnbr(points->z);
+	 *    ft_putchar('\n');
+	 *    ft_putstr("----------------\n");
+	 *    points = points->next;
+	 *    i++;
+	 *}
+	 *points = temp;
+	 */
 	points = scope(10, points);
 	points = nudge(300, points);
 	points = cartesian_to_isometric(points);
-	while (points->next)
-	{
-		if (points->exists)
-			ft_putstr("REAL NODE\n");
-		else
-			ft_putstr("NO NODE\n");
-		ft_putnbr(points->x);
-		ft_putchar('\n');
-		ft_putnbr(points->y);
-		ft_putchar('\n');
-		ft_putnbr(points->z);
-		ft_putchar('\n');
-		ft_putnbr(points->cart_x);
-		ft_putchar('\n');
-		ft_putnbr(points->cart_y);
-		ft_putchar('\n');
-		ft_putstr("----------------\n");
-		points = points->next;
-		i++;
-	}
-	points = temp;
-	ft_putstr("Number of nodes: ");
-	ft_putnbr(i);
+	/*
+	 *while (points->next)
+	 *{
+	 *    ft_putnbr(points->x);
+	 *    ft_putchar('\n');
+	 *    ft_putnbr(points->y);
+	 *    ft_putchar('\n');
+	 *    ft_putnbr(points->z);
+	 *    ft_putchar('\n');
+	 *    ft_putnbr(points->cart_x);
+	 *    ft_putchar('\n');
+	 *    ft_putnbr(points->cart_y);
+	 *    ft_putchar('\n');
+	 *    ft_putstr("----------------\n");
+	 *    points = points->next;
+	 *    i++;
+	 *}
+	 *points = temp;
+	 */
+	/*
+	 *ft_putstr("Number of nodes: ");
+	 *ft_putnbr(i);
+	 */
 	mlx->mlx_ptr = mlx_init();
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, 1000, 1000, "test window");
 	draw_map(mlx, points);
