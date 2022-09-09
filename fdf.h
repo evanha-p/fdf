@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/09/08 16:36:30 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/09/09 15:53:06 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,19 +65,15 @@ struct s_point
 
 typedef struct s_var
 {
-	int		i;
 	int		x_coord;
 	int		y_coord;
 	int		ret;
-	int		length;
 	int		start;
 	int		delta_x;
 	int		delta_y;
 	int		bresenham;
 	float	slope;
-	int		node_max_len;
 	int		fd;
-	int		spaces;
 }	t_var;
 
 int		draw_line(t_mlx *mlx, t_point start, t_point end);
