@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:56:51 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/09/09 15:57:07 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/09/09 16:06:31 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,13 @@ int	main(int argc, char **argv)
 {
 	t_point	*points;
 	t_mlx	*mlx;
+	t_var	*v;
 
 	mlx = (t_mlx *)malloc(sizeof(t_mlx));
+	check_malloc((void *)mlx);
+	v = (t_var *)malloc(sizeof(t_var));
+	check_malloc((void *)v);
+	initialize_variables(v);
 	if (argc != 2)
 		return (0);
 	points = reader(argv[1]);

@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/09/09 15:53:06 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/09/09 16:03:14 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,5 @@ t_point *reader_new(char *argv);
 void	errors_new(char *str);
 void	check_node_new(char *str, t_var *v);
 void	check_line_new(char *line, t_var *v);
+void	check_malloc(void *ptr);
 #endif

@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:16:27 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/09/09 15:15:41 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/09/09 16:02:20 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,4 +109,10 @@ void	check_nodes(t_point *point)
 		errors("no nodes");
 	point = head;
 	check_row_lengths(point);
+}
+
+void	check_malloc(void *ptr)
+{
+	if (!ptr)
+		errors("null pointer");
 }
