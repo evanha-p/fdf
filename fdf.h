@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/09/09 16:03:14 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/09/09 17:07:19 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,21 +74,22 @@ typedef struct s_var
 	int		bresenham;
 	float	slope;
 	int		fd;
+	float	multiplier;
 }	t_var;
 
 int		draw_line(t_mlx *mlx, t_point start, t_point end);
-t_point	*reader(char *argv);
+t_point	*reader(char *argv, t_var *v);
 void	initialize_variables(t_var *var);
 void	errors(char *str);
 t_point	*new_point(t_point *point);
 void	check_line(char *str);
-void	check_nodes(t_point *point);
+void	check_nodes(t_point *point, t_var *v);
 void	draw_bresenham(t_mlx *mlx, t_point *start, t_point *end);
 void	gentle_slope(t_mlx *mlx, t_point *start, t_point *end, t_var v);
 void	steep_slope(t_mlx *mlx, t_point *start, t_point *end, t_var v);
 void	draw_map(t_mlx *mlx, t_point *point);
 void	draw_straight(t_mlx *mlx, t_point *start, t_point *end, t_var v);
-t_point	*scope(int scope, t_point *point);
+t_point	*scope(t_point *point, t_var *v);
 t_point *nudge(int nudge, t_point *point);
 int		get_color(int height);
 t_point	*cartesian_to_isometric(t_point *points);
@@ -99,4 +100,5 @@ void	errors_new(char *str);
 void	check_node_new(char *str, t_var *v);
 void	check_line_new(char *line, t_var *v);
 void	check_malloc(void *ptr);
+t_point	*center(t_point *point, t_var *v);
 #endif

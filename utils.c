@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:04:24 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/09/09 15:53:05 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/09/09 17:07:36 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	initialize_variables(t_var *var)
 	var->bresenham = 0;
 	var->slope = 0;
 	var->fd = 0;
+	var->multiplier = 0;
 }
 
 /*Creates a new point and sets the old point to point to the new point.*/

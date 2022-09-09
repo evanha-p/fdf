@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:16:27 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/09/09 16:02:20 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/09/09 16:19:41 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ greater that the max_x we know that that row had more points than
 the first row. (See notes in reader.c for further explanation on why I check this.
 The explanation starts on row 68.)
 */
-static	void check_row_lengths(t_point *point)
+static	int check_row_lengths(t_point *point)
 {
 	t_point	*head;
 	int		max_x;
@@ -83,6 +83,7 @@ static	void check_row_lengths(t_point *point)
 		point = point->next;
 	}
 	point = head;
+	return (max_x);
 }
 
 /*
@@ -93,7 +94,7 @@ was either empty or only contained spaces.
 Function calls static helper function check_row_lengths which
 further checks the data we have stored.
 */
-void	check_nodes(t_point *point)
+void	check_nodes(t_point *point, t_var *v)
 {
 	t_point	*head;
 	int		i;
@@ -108,7 +109,7 @@ void	check_nodes(t_point *point)
 	if (i == 0)
 		errors("no nodes");
 	point = head;
-	check_row_lengths(point);
+	v->x_coord = check_row_lengths(point);
 }
 
 void	check_malloc(void *ptr)

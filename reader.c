@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 12:45:08 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/09/09 14:52:02 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/09/09 16:31:31 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ static	t_point	*set_values(t_point *point, char *line, t_var *v)
 Main function that calls the helper function.
 We use special type of variable t_var *v to store multiple variables
 such as ret, fd and so on (see the struct in fdf.h for the full list).
-We use a helper function "initialize variables" (located in utils.c)
-to initialize all the variables to 0.
 
 Function errors is used throughout the program and it gets called if any
 errors are detected. Based on the string used as an argument errors function
@@ -64,6 +62,8 @@ We read the file and check that it only contains digits or spaces with
 check_line -function. Then we store the values of the points to a
 linked list by using function set_values.
 Note: we use varibale v->y_coord to keep track on the row we are on.
+When we exit the while loop we minus y_coord by 2 since while loop
+"fires" twice after we have already read all the rows.
 
 Finally we check the all the nodes (the points) using check_nodes function.
 The function detects if no points are stored (file was empty/contained only
@@ -103,15 +103,12 @@ is a valid file.
 
 After the last check we return temp to the callee function.
 */
-t_point	*reader(char *argv)
+t_point	*reader(char *argv, t_var *v)
 {
-	t_var	*v;
 	t_point	*temp;
 	t_point	*head;
 	char	*line;
 
-	v = (t_var *)malloc(sizeof(t_var));
-	initialize_variables(v);
 	temp = (t_point *)malloc(sizeof(t_point));
 	head = temp;
 	v->ret = 1;
@@ -125,7 +122,8 @@ t_point	*reader(char *argv)
 		temp = set_values(temp, line, v);
 		v->y_coord++;
 	}
+	v->y_coord -= 2;
 	temp = head;
-	check_nodes(temp);
+	check_nodes(temp, v);
 	return (temp);
 }

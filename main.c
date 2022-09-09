@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:56:51 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/09/09 16:06:31 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/09/09 17:33:50 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int	main(int argc, char **argv)
 	initialize_variables(v);
 	if (argc != 2)
 		return (0);
-	points = reader(argv[1]);
-	points = scope(10, points);
-	points = nudge(300, points);
+	points = reader(argv[1], v);
+	points = scope(points, v);
+	points = center(points, v);
 	points = cartesian_to_isometric(points);
 	mlx->mlx_ptr = mlx_init();
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, 1000, 1000, "test window");

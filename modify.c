@@ -6,21 +6,25 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 13:48:35 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/08/05 19:23:58 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/09/09 17:38:49 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_point	*scope(int scope, t_point *point)
+t_point	*scope(t_point *point, t_var *v)
 {
 	t_point	*tmp;
 
 	tmp = point;
+	if (v->y_coord >= v->x_coord)
+		v->multiplier = 900 / v->y_coord;
+	else
+		v->multiplier = 900 / v->x_coord;
 	while (point)
 	{
-		point->x *= scope;
-		point->y *= scope;
+		point->x *= v->multiplier;
+		point->y *= v->multiplier;
 		point = point->next;
 	}
 	return (tmp);
@@ -38,6 +42,24 @@ t_point	*nudge(int nudge, t_point *point)
 		point = point->next;
 	}
 	return (tmp);
+}
+
+t_point *center(t_point *point, t_var *v)
+{
+	t_point	*head;
+	float	mid_x;
+	float	mid_y;
+
+	head = point;
+	mid_x = v->x_coord / 2 * v->multiplier;
+	mid_y = v->y_coord / 2 * v->multiplier;
+	while (point)
+	{
+		point->x = point->x + 500 - mid_x;
+		point->y = point->y + 500 - mid_y;
+		point = point->next;
+	}
+	return (head);
 }
 
 t_point	*cartesian_to_isometric(t_point *points)
