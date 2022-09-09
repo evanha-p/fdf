@@ -6,12 +6,19 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:16:27 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/09/08 17:16:32 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/09/09 15:15:41 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+/*
+A function that gets called if some errors are detected.The function receives a string
+from the callee function and based on the string prints an error message corresponding
+to the error detected.
+
+It also prints the usage and uses function exit to exit the program.
+*/
 void	errors(char *str)
 {
 	ft_putstr_fd("Error: ", 2);
@@ -29,6 +36,10 @@ void	errors(char *str)
 	exit(0);
 }
 
+/*
+Checks that the line received from the callee function (see reader function in reader.c)
+only contains spaces or digits.
+*/
 void	check_line(char *str)
 {
 	int		i;
@@ -42,6 +53,17 @@ void	check_line(char *str)
 	}
 }
 
+/*
+Helper function for check_nodes. Checks that all the rows in the original
+file contain same amount of points.
+
+First we check how many points are stored in the first row and store
+that to the variable max_x. Then we go through the remaining points.
+If in any point the x value of a point (stored in point->cart_x) is
+greater that the max_x we know that that row had more points than 
+the first row. (See notes in reader.c for further explanation on why I check this.
+The explanation starts on row 68.)
+*/
 static	void check_row_lengths(t_point *point)
 {
 	t_point	*head;
@@ -63,14 +85,20 @@ static	void check_row_lengths(t_point *point)
 	point = head;
 }
 
+/*
+Checks the points (that are stored in linked list) and counts
+how many there are. If no points are detected the file
+was either empty or only contained spaces.
+
+Function calls static helper function check_row_lengths which
+further checks the data we have stored.
+*/
 void	check_nodes(t_point *point)
 {
 	t_point	*head;
 	int		i;
-	int		max_x;
 
 	i = 0;
-	max_x = 0;
 	head = point;
 	while (point->next)
 	{
