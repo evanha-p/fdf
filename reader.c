@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 12:45:08 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/09/09 16:31:31 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/09/22 14:26:40 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ We read the file and check that it only contains digits or spaces with
 check_line -function. Then we store the values of the points to a
 linked list by using function set_values.
 Note: we use varibale v->y_coord to keep track on the row we are on.
-When we exit the while loop we minus y_coord by 2 since while loop
-"fires" twice after we have already read all the rows.
+When we exit the while loop we minus y_coord by 1 since while loop
+"fires" once after we have already read all the rows.
 
 Finally we check the all the nodes (the points) using check_nodes function.
 The function detects if no points are stored (file was empty/contained only
@@ -122,7 +122,7 @@ t_point	*reader(char *argv, t_var *v)
 		temp = set_values(temp, line, v);
 		v->y_coord++;
 	}
-	v->y_coord -= 2;
+	v->y_coord--;
 	temp = head;
 	check_nodes(temp, v);
 	return (temp);
