@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/09/22 15:56:51 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/09/23 14:57:56 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ typedef struct s_var
 	int		bresenham;
 	float	slope;
 	int		fd;
-	float	multiplier;
+	int		multiplier;
 	int		max_x;
 	int		min_x;
 	int		max_y;

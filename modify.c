@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 13:48:35 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/09/09 17:41:26 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/09/23 17:43:28 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,13 @@ t_point	*scope(t_point *point, t_var *v)
 
 	tmp = point;
 	if (v->y_coord >= v->x_coord)
-		v->multiplier = 900 / v->y_coord;
+		v->multiplier = 500 / v->y_coord;
 	else
-		v->multiplier = 900 / v->x_coord;
+		v->multiplier = 500 / v->x_coord;
 	while (point)
 	{
 		point->x *= v->multiplier;
 		point->y *= v->multiplier;
-		point = point->next;
-	}
-	return (tmp);
-}
-
-t_point	*nudge(int nudge, t_point *point)
-{
-	t_point	*tmp;
-
-	tmp = point;
-	while (point)
-	{
-		point->x = point->x + point->x + 1.5 * nudge;
-		point->y += point->y;
 		point = point->next;
 	}
 	return (tmp);
@@ -51,8 +37,8 @@ t_point *center(t_point *point, t_var *v)
 	float	mid_y;
 
 	head = point;
-	mid_x = v->x_coord / 2 * v->multiplier;
-	mid_y = v->y_coord / 2 * v->multiplier;
+	mid_x = v->x_coord / 2;
+	mid_y = v->y_coord / 2;
 	while (point)
 	{
 		point->x = point->x + 500 - mid_x;
@@ -65,8 +51,8 @@ t_point *center(t_point *point, t_var *v)
 t_point	*cartesian_to_isometric(t_point *points)
 {
 	t_point	*temp;
-	int		x;
-	int		y;
+	float	x;
+	float	y;
 
 	temp = points;
 	while(points)
