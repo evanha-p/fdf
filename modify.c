@@ -6,11 +6,39 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 13:48:35 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/09/23 17:43:28 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/09/23 19:59:38 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+t_point	*zoom_points(t_point *point, float zoom)
+{
+	t_point	*head;
+
+	head = point;
+	while (point)
+	{
+		point->x *= zoom;
+		point->y *= zoom;
+		point = point->next;
+	}
+	return (head);
+}
+
+t_point *move_points(t_point *point, int x, int y)
+{
+	t_point	*head;
+
+	head = point;
+	while (point)
+	{
+		point->x += x;
+		point->y += y;
+		point = point->next;
+	}
+	return (head);
+}
 
 t_point	*scope(t_point *point, t_var *v)
 {

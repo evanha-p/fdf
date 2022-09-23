@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/09/23 14:57:56 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/09/23 19:59:25 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@
 # include <math.h>
 # include <fcntl.h>
 # include <stdio.h>
+
+# define ESC 53
+# define UP 126
+# define DOWN 125
+# define LEFT 123
+# define RIGHT 124
+# define ZOOM_BIGGER 24
+# define ZOOM_SMALLER 27
 
 /* Stores all mlx related data */
 
@@ -81,6 +89,13 @@ typedef struct s_var
 	int		min_y;
 }	t_var;
 
+typedef struct s_ptrs
+{
+	t_point	*point;
+	t_mlx	*mlx;
+	t_var	*v;
+}	t_ptrs;
+
 int		draw_line(t_mlx *mlx, t_point start, t_point end);
 t_point	*reader(char *argv, t_var *v);
 void	initialize_variables(t_var *var);
@@ -105,4 +120,7 @@ void	check_node_new(char *str, t_var *v);
 void	check_line_new(char *line, t_var *v);
 void	check_malloc(void *ptr);
 t_point	*center(t_point *point, t_var *v);
+int		key_event(int key, t_ptrs *pointers);
+t_point	*move_points(t_point *point, int x, int y);
+t_point	*zoom_points(t_point *point, float zoom);
 #endif
