@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/09/23 19:59:25 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:18:42 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ struct s_point
 	int		z;
 	int		cart_x;
 	int		cart_y;
+	double	zoom;
 	t_point	*next;
 };
 

@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 18:42:08 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/09/23 20:08:26 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:32:23 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ static	void	move_picture(int key, t_ptrs *pointers)
 	if (key == RIGHT)
 		pointers->point = move_points(pointers->point, 10, 0);
 	if (key == ZOOM_BIGGER)
-		pointers->point = zoom_points(pointers->point, 1.5);
+		pointers->point = zoom_points(pointers->point, 1.1);
 	if (key == ZOOM_SMALLER)
-		pointers->point = zoom_points(pointers->point, 0.75);
+		pointers->point = zoom_points(pointers->point, 0.9);
 	mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
 	draw_map(pointers->mlx, pointers->point);
 }

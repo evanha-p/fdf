@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 13:48:35 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/09/23 20:08:27 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:20:41 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ t_point	*zoom_points(t_point *point, float zoom)
 	head = point;
 	while (point)
 	{
-		point->x *= zoom;
-		point->y *= zoom;
+		point->zoom *= zoom;
 		point = point->next;
 	}
 	return (head);

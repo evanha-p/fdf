@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 12:45:08 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/09/22 14:26:40 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:18:58 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static	t_point	*set_values(t_point *point, char *line, t_var *v)
 		point->cart_x = i;
 		point->x = i;
 		point->z = ft_atoi(values[i]);
+		point->zoom = 1;
 		point = new_point(point);
 		i++;
 	}

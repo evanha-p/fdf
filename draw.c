@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:53:43 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/08/05 17:28:21 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:53:40 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,13 +99,17 @@ the function below only works for lines where 0 < slope(=m) < 1.
 
 void	gentle_slope(t_mlx *mlx, t_point *start, t_point *end, t_var v)
 {
-	v.x_coord = start->x;
-	v.y_coord = start->y;
+	v.x_coord = start->x * start->zoom;
+	v.y_coord = start->y * start->zoom;
 	v.delta_y = fabs((double)v.delta_y);
 	v.delta_x = fabs((double)v.delta_x);
 	v.bresenham = 2 * v.delta_y - v.delta_x;
-	while (v.x_coord != end->x)
+	if (v.x_coord > 1000 || v.x_coord < 0 || v.y_coord > 1000 || v.y_coord < 0)
+		return;
+	while (v.x_coord != (int)(end->x * end->zoom))
 	{
+		if (end->y * end->zoom > 1000 || end->y * end->zoom < 0)
+			break;
 		mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, v.x_coord, \
 				v.y_coord, get_color(end->z));
 		if (v.bresenham < 0)
@@ -148,13 +152,17 @@ Example:
 
 void	steep_slope(t_mlx *mlx, t_point *start, t_point *end, t_var v)
 {
-	v.x_coord = start->x;
-	v.y_coord = start->y;
+	v.x_coord = start->x * start->zoom;
+	v.y_coord = start->y * start->zoom;
 	v.delta_y = fabs((double)v.delta_y);
 	v.delta_x = fabs((double)v.delta_x);
 	v.bresenham = 2 * v.delta_x - v.delta_y;
-	while (v.y_coord != end->y)
+	if (v.x_coord > 1000 || v.x_coord < 0 || v.y_coord > 1000 || v.y_coord < 0)
+		return;
+	while (v.y_coord != (int)(end->y * end->zoom))
 	{
+		if (end->y * end->zoom > 1000 || end->y * end->zoom < 0)
+			break;
 		mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, v.x_coord, \
 				v.y_coord, get_color(end->z));
 		if (v.bresenham < 0)

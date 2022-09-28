@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:04:24 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/09/23 14:56:17 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:49:51 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,22 +60,26 @@ void	drawing_loop(t_point *start, t_point *end, t_mlx *mlx, char *str)
 	t_var	v;
 
 	initialize_variables(&v);
-	v.x_coord = start->x;
-	v.y_coord = start->y;
+	v.x_coord = start->x * start->zoom;
+	v.y_coord = start->y * start->zoom;
 	if (!(ft_strcmp("horizontal", str)))
 	{
-		while (v.x_coord <= end->x)
+		while (v.x_coord <= (int)(end->x * end->zoom))
 		{
+			if (end->x * end->zoom > 1000 || end->x * end->zoom < 0)
+				break;
 			mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, v.x_coord, \
-					end->y, get_color(end->z));
+					(end->y * end->zoom), get_color(end->z));
 			v.x_coord++;
 		}
 	}
 	else
 	{
-		while (v.y_coord <= end->y)
+		while (v.y_coord <= (int)(end->y * end->zoom))
 		{
-			mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, end->x, \
+			if (end->y * end->zoom > 1000 || end->y * end->zoom < 0)
+				break;
+			mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, (end->x * end->zoom), \
 					v.y_coord, get_color(end->z));
 			v.y_coord++;
 		}
