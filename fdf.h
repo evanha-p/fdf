@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/09/28 15:18:42 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/09/28 17:46:08 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define RIGHT 124
 # define ZOOM_BIGGER 24
 # define ZOOM_SMALLER 27
+# define ROTATE 15
 
 /* Stores all mlx related data */
 
@@ -124,4 +125,6 @@ t_point	*center(t_point *point, t_var *v);
 int		key_event(int key, t_ptrs *pointers);
 t_point	*move_points(t_point *point, int x, int y);
 t_point	*zoom_points(t_point *point, float zoom);
+t_point	*cartesian_to_cabinet(t_point *points);
+t_point	*rotation(t_point *points);
 #endif
