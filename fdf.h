@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/04 19:40:34 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/04 19:45:38 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,6 @@ typedef struct s_mlx
 	void	*mlx_ptr;
 	void	*win_ptr;
 }	t_mlx;
-
-/* Stores properties of a line */
-
-typedef struct s_line
-{
-	int		start_x;
-	int		start_y;
-	int		end_x;
-	int		end_y;
-	int		color;
-}	t_line;
 
 /* Created a custom boolian to improve readability.
  * false = 0
@@ -80,17 +69,12 @@ typedef struct s_var
 	int		x_coord;
 	int		y_coord;
 	int		ret;
-	int		start;
 	int		delta_x;
 	int		delta_y;
 	int		bresenham;
 	float	slope;
 	int		fd;
 	int		multiplier;
-	int		max_x;
-	int		min_x;
-	int		max_y;
-	int		min_y;
 }	t_var;
 
 typedef struct s_ptrs
