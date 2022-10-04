@@ -19,6 +19,19 @@
 # include <math.h>
 # include <fcntl.h>
 
+// ESC = esc
+// UP = arrow up
+// DOWN = arrow down
+// LEFT = arrow left
+// RIGHT = arrow right
+// ZOOM_BIGGER = +
+// ZOOM_SMALLER = -
+// ROTATE = R
+// ISOMETRIC = I
+// WHITE = nbr 1
+// RED = nbr 2
+// GREEN = nbr 3
+// HIGHLIGHT (color changes based on height) = nbr 4
 # define ESC 53
 # define UP 126
 # define DOWN 125
@@ -28,6 +41,10 @@
 # define ZOOM_SMALLER 27
 # define ROTATE 15
 # define ISOMETRIC 34
+# define WHITE 18
+# define RED 19
+# define GREEN 20
+# define HIGHLIGHT 21
 
 /* Stores all mlx related data */
 
@@ -59,7 +76,7 @@ struct s_point
 	int		cart_x;
 	int		cart_y;
 	double	zoom;
-	char	*color;
+	int		color;
 	t_point	*next;
 	t_point	*below;
 };
@@ -101,6 +118,7 @@ void	errors(char *str);
 t_point	*zoom_points(t_point *point, float zoom);
 t_point	*move_points(t_point *point, int x, int y);
 t_point	*reset_values(t_point *point);
+t_point	*change_color(t_point *point, int color);
 
 //Functions located in events.c
 int		key_event(int key, t_ptrs *pointers);
@@ -116,7 +134,7 @@ t_point	*reader(char *argv, t_var *v);
 
 //Functions located in utils.c
 void	drawing_loop(t_point *start, t_point *end, t_mlx *mlx, char *str);
-int		get_color(t_point *point);
+int		get_color(t_point *start, t_point *end);
 t_point	*new_point(t_point *point);
 void	initialize_variables(t_var *var);
 t_point	*set_points_below(t_point *point);

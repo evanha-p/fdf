@@ -108,7 +108,7 @@ void	gentle_slope(t_mlx *mlx, t_point *start, t_point *end, t_var v)
 	{
 		if (!(v.x_coord > 1000 || v.y_coord < 0 || v.y_coord > 1000 || v.y_coord < 0))
 			mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, v.x_coord, \
-					v.y_coord, get_color(end->z));
+					v.y_coord, get_color(start, end));
 		if (v.bresenham < 0)
 			v.bresenham = v.bresenham + 2 * v.delta_y;
 		else
@@ -158,7 +158,7 @@ void	steep_slope(t_mlx *mlx, t_point *start, t_point *end, t_var v)
 	{
 		if (!(v.x_coord > 1000 || v.x_coord  < 0 || v.y_coord > 1000 || v.y_coord < 0))
 			mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, v.x_coord, \
-					v.y_coord, get_color(end->z));
+					v.y_coord, get_color(start, end));
 		if (v.bresenham < 0)
 			v.bresenham = v.bresenham + 2 * v.delta_x;
 		else

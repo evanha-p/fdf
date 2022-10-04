@@ -43,7 +43,7 @@ static	t_point	*set_values(t_point *point, char *line, t_var *v)
 		point->x = i;
 		point->z = ft_atoi(values[i]);
 		point->zoom = 1;
-		point->color = "white";
+		point->color = WHITE;
 		point = new_point(point);
 		i++;
 	}

@@ -85,12 +85,18 @@ t_point	*new_point(t_point *point)
 	return (next);
 }
 
-int	get_color(t_point *point)
+int	get_color(t_point *start, t_point *end)
 {
-	if (!(ft_strcmp("white", point->color)))
+	if (start->color == WHITE)
 		return (0xFFFFFF);
-	else if (!(ft_strcmp("height", point->color)))
-		return (0xFFFFFF - point->height);
+	else if (start->color == RED)
+		return (0xFF2D00);
+	else if (start->color == GREEN)
+		return (0x6CFF00);
+	else if (start->color == HIGHLIGHT && (start->z > 0 || end->z > 0))
+		return (0xE800FF);
+	else
+		return (0xFFFFFF);
 }
 
 /*Helper function for draw_straight. Does the drawing.*/
@@ -108,7 +114,7 @@ void	drawing_loop(t_point *start, t_point *end, t_mlx *mlx, char *str)
 		{
 			if (!(v.x_coord > 1000 || v.x_coord < 0))
 				mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, v.x_coord, \
-						(end->y * end->zoom), get_color(end));
+						(end->y * end->zoom), get_color(start, end));
 			v.x_coord++;
 		}
 	}
@@ -118,7 +124,7 @@ void	drawing_loop(t_point *start, t_point *end, t_mlx *mlx, char *str)
 		{
 			if (!(v.y_coord > 1000 || v.y_coord < 0))
 				mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, (end->x * end->zoom), \
-						v.y_coord, get_color(end));
+						v.y_coord, get_color(start, end));
 			v.y_coord++;
 		}
 	}

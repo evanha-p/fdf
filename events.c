@@ -15,7 +15,7 @@
 /*
 Function handles the moving and zooming events. It uses
 functions move_points and zoom_points that are located
-in modify.c
+in event_modifiers.c
 */
 
 static	void	move_picture(int key, t_ptrs *pointers)
@@ -63,6 +63,20 @@ static	void	change_projection(int key, t_ptrs *pointers)
 	draw_map(pointers->mlx, pointers->point);
 }
 
+static	void	color(int key, t_ptrs *pointers)
+{
+	if (key == WHITE)
+		pointers->point = change_color(pointers->point, WHITE);
+	if (key == RED)
+		pointers->point = change_color(pointers->point, RED);
+	if (key == GREEN)
+		pointers->point = change_color(pointers->point, GREEN);
+	if (key == HIGHLIGHT)
+		pointers->point = change_color(pointers->point, HIGHLIGHT);
+	mlx_clear_window(pointers->mlx->mlx_ptr, pointers->mlx->win_ptr);
+	draw_map(pointers->mlx, pointers->point);
+}
+
 /*
 The main function used to handle events. Calls others.
 We use macros to help with the readability.
@@ -82,7 +96,11 @@ int	key_event(int key, t_ptrs *pointers)
 	}
 	if ((key >= LEFT && key <= UP) || key == ZOOM_BIGGER || key == ZOOM_SMALLER)
 		move_picture(key, pointers);
-	if (key == ROTATE || key == ISOMETRIC)
+	else if (key == ROTATE || key == ISOMETRIC)
 		change_projection(key, pointers);
+	else if (key >= WHITE && key <= HIGHLIGHT)
+		color(key, pointers);
+	else
+		ft_putnbr(key);
 	return (0);
 }
