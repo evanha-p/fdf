@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:53:43 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/04 15:59:37 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/04 19:25:48 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ In that case we simply flip the points we send to function
 drawing_loop so it will consider the true starting point
 as the end and vice versa.
 
-The draw_straight function is located in utils.c
+The drawing_loop function is located in utils.c
 */
 
 void	draw_straight(t_mlx *mlx, t_point *start, t_point *end, t_var v)
@@ -218,28 +218,19 @@ the draw_bresenham function only works with slopes <= 0.
 This is intentional).
 
 Next we draw the line from the point to the point "below".
-To do this we go through the list until we find a point
-with the same x value.
+To do this we use pointer "below", which points to the next
+point with the same x value as the current point. This
+pointer is set up in the function set_points_below
+located in utils.c.
+IMPORTANT: Since we set the last rows below -pointers
+to NULL in the set_points_below function the second
+draw_bresenham -function doesn't get called when
+we go thourgh the last row of values since the
+if (point->below) will be always false because
+point->below = NULL.
 */
 
 void	draw_map(t_mlx *mlx, t_point *point)
-{
-	t_point	*next;
-
-	while (point->next)
-	{
-		next = point->next;
-		if (point->cart_y == next->cart_y && next->next)
-			draw_bresenham(mlx, point, next);
-		while (point->cart_x != next->cart_x && next->next)
-			next = next->next;
-		if (point->cart_x == next->cart_x && next->next)
-			draw_bresenham(mlx, next, point);
-		point = point->next;
-	}
-}
-
-void	draw_map_new(t_mlx *mlx, t_point *point)
 {
 	t_point	*next;
 	t_point	*head;

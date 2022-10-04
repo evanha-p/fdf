@@ -6,11 +6,17 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 18:42:08 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/04 17:10:45 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/04 19:21:11 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+/*
+Function handles the moving and zooming events. It uses
+functions move_points and zoom_points that are located
+in modify.c
+*/
 
 static	void	move_picture(int key, t_ptrs *pointers)
 {
@@ -35,6 +41,11 @@ static	void	move_picture(int key, t_ptrs *pointers)
 	draw_map(pointers->mlx, pointers->point);
 }
 
+/*
+Static helper function that handles changing from a projection
+to another
+*/
+
 static	void	change_projection(int key, t_ptrs *pointers)
 {
 	t_mlx	*mlx;
@@ -52,6 +63,11 @@ static	void	change_projection(int key, t_ptrs *pointers)
 	draw_map(pointers->mlx, pointers->point);
 }
 
+/*
+The main function used to handle events. Calls others.
+We use macros to help with the readability.
+*/
+
 int	key_event(int key, t_ptrs *pointers)
 {
 	t_mlx	*mlx;
@@ -68,7 +84,5 @@ int	key_event(int key, t_ptrs *pointers)
 		move_picture(key, pointers);
 	if (key == ROTATE || key == ISOMETRIC)
 		change_projection(key, pointers);
-	else
-		ft_putnbr(key);
 	return (0);
 }

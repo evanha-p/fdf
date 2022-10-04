@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:56:51 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/04 17:03:49 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/04 17:58:43 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int argc, char **argv)
 	pointers->mlx = mlx;
 	pointers->point = points;
 	pointers->v = v;
-	draw_map_new(mlx, points);
+	draw_map(mlx, points);
 	mlx_key_hook(mlx->win_ptr, key_event, pointers);
 	mlx_loop(mlx->mlx_ptr);
 	return (0);

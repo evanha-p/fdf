@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:16:27 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/04 15:15:27 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/04 19:22:22 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,11 @@ void	check_nodes(t_point *point, t_var *v)
 	point = head;
 	v->x_coord = check_row_lengths(point);
 }
+
+/*
+Simple function that checks if the pointer it received is NULL.
+If it detects such case it calls the errors function.
+*/
 
 void	check_malloc(void *ptr)
 {
