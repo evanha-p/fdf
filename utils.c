@@ -6,12 +6,36 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:04:24 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/04 17:12:59 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/04 18:13:28 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+/*
+Goes through the linked list and sets the pointer below to
+point to the point which has the same x -value as the current
+one. This information is needed when we draw the map.
+
+Example:
+
+1 0 0 5 0 0
+0 0 0 2 0 0
+9 9 9 9 9 9
+
+Let's assume we are in the first row in a point, which height
+value is 5. In the innermost while loop we go through the
+points until we hit the point with height value of 2 since
+it has the same x-value (the x-value is 3 in this example).
+We set the current points (the 5) below -pointer to point
+to the point with the height value of 2.
+
+In the last row (all the height values are 9 in this example)
+we obviously don't have points below so
+the while loop loops until we hit the end of the list
+and so next->next will be NULL. When this is detected
+we set the below -pointer to also be NULL.
+*/
 
 t_point	*set_points_below(t_point *point)
 {
@@ -32,6 +56,12 @@ t_point	*set_points_below(t_point *point)
 	}
 	return (head);
 }
+
+/*
+Sets point->x and point->y values to the original
+values they were after sent to the function scope.
+Also sets the zoom back to its original value of 1.
+*/
 
 t_point	*reset_values(t_point *point)
 {
@@ -118,83 +148,4 @@ void	drawing_loop(t_point *start, t_point *end, t_mlx *mlx, char *str)
 			v.y_coord++;
 		}
 	}
-}
-
-
-/*
- *Draw_line function uses tan a to calculate the location for y.
- *Since we can form a right triangle from one point to next
- *
- *we can use trigonometric functions to calculate value of y
- *everytime we increase the value of x by 1.
- *The right triangle is formed with:
- *- line between start and finish being the hypotenuse
- *- Difference from x at start to finish and from y at start to finish
- *  being the cathetuses
- *
- *Example:
- *                      finish
- *                         x
- *                     .   |
- *                  .      |
- *              .          | y
- *    	     .             |
- * 	     .                 |
- *     x - - - - - - - - - /
- *   start        x
- *
- *First we calcute the length of x and y (the sides of the triangle) by
- *substracting the x and y values at the end by the x and y values 
- *at the start.
- *
- *length of x = x coordinate at end - x coordinate at beginning
- *(same for the y value)
- *
- *With that we calculate tan a.
- *
- *tan a = y/x
- *
- *When we have solved tan a we can use it to calculate the values of y
- *when value of x changes.
- *
- *y = tan a * x
- *
- *Note: function above gives the amount the y value has increased.
- *So we need to add the value of y at the beginning to get the correct
- *value for the y coordinate.
- */
-int	draw_line(t_mlx *mlx, t_point start, t_point end)
-{
-	double	distance_x;
-	double	distance_y;
-	double	tan_a;
-	double	location_y;
-
-	distance_x = end.x - start.x;
-	distance_y = end.y - start.y;
-	tan_a = distance_y / distance_x;
-	distance_x = 0;
-	while (start.x <= end.x)
-	{
-		location_y = start.y + (tan_a * distance_x);
-		mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, \
-		start.x, location_y, 0xFFFFFF);
-		start.x++;
-		distance_x++;
-	}
-	return (0);
-}
-
-void	draw_dot(t_mlx *mlx, t_point *points)
-{
-	t_point	*temp;
-
-	temp = points;
-	while (points)
-	{
-		mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, points->x, \
-				points->y, get_color(points->z));
-		points = points->next;
-	}
-	points = temp;
 }
