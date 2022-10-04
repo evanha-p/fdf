@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/04 17:10:18 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/04 19:40:34 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,36 +100,38 @@ typedef struct s_ptrs
 	t_var	*v;
 }	t_ptrs;
 
-int		draw_line(t_mlx *mlx, t_point start, t_point end);
-t_point	*reader(char *argv, t_var *v);
-void	initialize_variables(t_var *var);
-void	errors(char *str);
-t_point	*new_point(t_point *point);
-void	check_line(char *str);
-void	check_nodes(t_point *point, t_var *v);
-void	draw_bresenham(t_mlx *mlx, t_point *start, t_point *end);
-void	gentle_slope(t_mlx *mlx, t_point *start, t_point *end, t_var v);
-void	steep_slope(t_mlx *mlx, t_point *start, t_point *end, t_var v);
+//Functions located in draw.c:
 void	draw_map(t_mlx *mlx, t_point *point);
+void	draw_bresenham(t_mlx *mlx, t_point *start, t_point *end);
+void	steep_slope(t_mlx *mlx, t_point *start, t_point *end, t_var v);
+void	gentle_slope(t_mlx *mlx, t_point *start, t_point *end, t_var v);
 void	draw_straight(t_mlx *mlx, t_point *start, t_point *end, t_var v);
-t_point	*scope(t_point *point, t_var *v);
-t_point *nudge(int nudge, t_point *point);
-int		get_color(int height);
-t_point	*cartesian_to_isometric(t_point *points);
-void	drawing_loop(t_point *start, t_point *end, t_mlx *mlx, char *str);
-void	draw_dot(t_mlx *mlx, t_point *points);
-t_point *reader_new(char *argv);
-void	errors_new(char *str);
-void	check_node_new(char *str, t_var *v);
-void	check_line_new(char *line, t_var *v);
+
+//Functions located in errors.c
 void	check_malloc(void *ptr);
-t_point	*center(t_point *point, t_var *v);
+void	check_nodes(t_point *point, t_var *v);
+void	check_line(char *str);
+void	errors(char *str);
+
+//Functions located in events.c
 int		key_event(int key, t_ptrs *pointers);
+
+//Functions located in modify.c
+t_point *sideways_projection(t_point *points);
+t_point	*cartesian_to_isometric(t_point *points);
+t_point	*center(t_point *point, t_var *v);
+t_point	*scope(t_point *point, t_var *v);
 t_point	*move_points(t_point *point, int x, int y);
 t_point	*zoom_points(t_point *point, float zoom);
-t_point *sideways_projection(t_point *points);
-t_point	*set_points_below(t_point *point);
-void	draw_map_new(t_mlx *mlx, t_point *point);
-t_point	*cartesian_to_cabinet(t_point *points);
+
+//Functions located in reader.c
+t_point	*reader(char *argv, t_var *v);
+
+//Functions located in utils.c
+void	drawing_loop(t_point *start, t_point *end, t_mlx *mlx, char *str);
+int		get_color(int height);
+t_point	*new_point(t_point *point);
+void	initialize_variables(t_var *var);
 t_point	*reset_values(t_point *point);
+t_point	*set_points_below(t_point *point);
 #endif
