@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/09/28 17:46:08 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/04 17:10:18 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define ZOOM_BIGGER 24
 # define ZOOM_SMALLER 27
 # define ROTATE 15
+# define ISOMETRIC 34
 
 /* Stores all mlx related data */
 
@@ -71,6 +72,7 @@ struct s_point
 	int		cart_y;
 	double	zoom;
 	t_point	*next;
+	t_point	*below;
 };
 
 typedef struct s_var
@@ -125,6 +127,9 @@ t_point	*center(t_point *point, t_var *v);
 int		key_event(int key, t_ptrs *pointers);
 t_point	*move_points(t_point *point, int x, int y);
 t_point	*zoom_points(t_point *point, float zoom);
+t_point *sideways_projection(t_point *points);
+t_point	*set_points_below(t_point *point);
+void	draw_map_new(t_mlx *mlx, t_point *point);
 t_point	*cartesian_to_cabinet(t_point *points);
-t_point	*rotation(t_point *points);
+t_point	*reset_values(t_point *point);
 #endif

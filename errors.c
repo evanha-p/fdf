@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:16:27 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/09/22 15:15:10 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/04 15:15:27 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	check_line(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (!(ft_isdigit(str[i])) && str[i] != ' ')
+		if (!(ft_isdigit(str[i])) && str[i] != ' ' && str[i] != '-')
 			errors("invalid character");
 		i++;
 	}

@@ -6,11 +6,47 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:04:24 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/04 14:46:49 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/04 17:12:59 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+
+t_point	*set_points_below(t_point *point)
+{
+	t_point	*head;
+	t_point	*next;
+
+	head = point;
+	while (point->next)
+	{
+		next = point->next;
+		while (point->cart_x != next->cart_x && next->next)
+			next = next->next;
+		if (!next->next)
+			point->below = NULL;
+		else
+			point->below = next;
+		point = point->next;
+	}
+	return (head);
+}
+
+t_point	*reset_values(t_point *point)
+{
+	t_point	*head;
+
+	head = point;
+	while (point)
+	{
+		point->x = point->cart_x;
+		point->y = point->cart_y;
+		point->zoom = 1;
+		point = point->next;
+	}
+	return (head);
+}
 
 /*Sets all variables in struct t_var to 0*/
 

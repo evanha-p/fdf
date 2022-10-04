@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 13:48:35 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/09/28 18:02:46 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/04 16:51:50 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,36 +94,15 @@ t_point	*cartesian_to_isometric(t_point *points)
 	return (points);
 }
 
-t_point	*rotation(t_point *points)
+t_point	*sideways_projection(t_point *points)
 {
 	t_point	*head;
 
 	head = points;
 	while (points)
 	{
-		points->z = (points->x + points->y) / (2 * sqrt(2));
+		points->y = -points->z;
 		points = points->next;
 	}
 	return (head);
-}
-
-t_point	*cartesian_to_cabinet(t_point *points)
-{
-	t_point	*head;
-	double	x;
-	double	y;
-	double	z;
-
-	head = points;
-	while (points)
-	{
-		x = points->cart_x;
-		y = points->cart_y;
-		z = points->z;
-		points->x = x + z * sin(-1) * 0.5;
-		points->y = y + z * cos(-1) * 0.5;
-		points = points->next;
-	}
-	points = head;
-	return (points);
 }
