@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/04 19:45:38 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/04 19:48:49 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <stdlib.h>
 # include <math.h>
 # include <fcntl.h>
-# include <stdio.h>
 
 # define ESC 53
 # define UP 126
