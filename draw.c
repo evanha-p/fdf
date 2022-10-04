@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:53:43 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/09/28 16:00:20 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/04 14:44:29 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,14 +104,11 @@ void	gentle_slope(t_mlx *mlx, t_point *start, t_point *end, t_var v)
 	v.delta_y = fabs((double)v.delta_y);
 	v.delta_x = fabs((double)v.delta_x);
 	v.bresenham = 2 * v.delta_y - v.delta_x;
-	if (v.x_coord > 1000 || v.x_coord < 0 || v.y_coord > 1000 || v.y_coord < 0)
-		return;
 	while (v.x_coord != (int)(end->x * end->zoom))
 	{
-		if (end->y * end->zoom > 1000 || end->y * end->zoom < 0)
-			break;
-		mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, v.x_coord, \
-				v.y_coord, get_color(end->z));
+		if (!(v.x_coord > 1000 || v.y_coord < 0 || v.y_coord > 1000 || v.y_coord < 0))
+			mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, v.x_coord, \
+					v.y_coord, get_color(end->z));
 		if (v.bresenham < 0)
 			v.bresenham = v.bresenham + 2 * v.delta_y;
 		else
@@ -157,14 +154,11 @@ void	steep_slope(t_mlx *mlx, t_point *start, t_point *end, t_var v)
 	v.delta_y = fabs((double)v.delta_y);
 	v.delta_x = fabs((double)v.delta_x);
 	v.bresenham = 2 * v.delta_x - v.delta_y;
-	if (v.x_coord > 1000 || v.x_coord < 0 || v.y_coord > 1000 || v.y_coord < 0)
-		return;
 	while (v.y_coord != (int)(end->y * end->zoom))
 	{
-		if (end->y * end->zoom > 1000 || end->y * end->zoom < 0)
-			break;
-		mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, v.x_coord, \
-				v.y_coord, get_color(end->z));
+		if (!(v.x_coord > 1000 || v.x_coord  < 0 || v.y_coord > 1000 || v.y_coord < 0))
+			mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, v.x_coord, \
+					v.y_coord, get_color(end->z));
 		if (v.bresenham < 0)
 			v.bresenham = v.bresenham + 2 * v.delta_x;
 		else

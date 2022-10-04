@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:56:51 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/09/28 18:02:46 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/04 14:29:50 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 		return (0);
 	points = reader(argv[1], v);
 	points = scope(points, v);
-	points = rotation(points);
+	/*points = rotation(points);*/
 	points = cartesian_to_isometric(points);
 	points = center(points, v);
 	mlx->mlx_ptr = mlx_init();
