@@ -13,48 +13,6 @@
 #include "fdf.h"
 
 /*
-Function gets called if + or - are pressed while the program is running.
-The callee function is located in events.c.
-The function modifies the zoom variable either by
-increasing or decreasing it. This way we can zoom or
-"dezoom" the picture.
-*/
-
-t_point	*zoom_points(t_point *point, float zoom)
-{
-	t_point	*head;
-
-	head = point;
-	while (point)
-	{
-		point->zoom *= zoom;
-		point = point->next;
-	}
-	return (head);
-}
-
-/*
-The function gets called if W, A, S, or D is pressed while the
-program is running. The callee function is located in events.c.
-Modifies the x and y values of each point according to the
-button press. This way we can move the picture.
-*/
-
-t_point *move_points(t_point *point, int x, int y)
-{
-	t_point	*head;
-
-	head = point;
-	while (point)
-	{
-		point->x += x;
-		point->y += y;
-		point = point->next;
-	}
-	return (head);
-}
-
-/*
 Sets the initial size of the picture so it fits the screen better.
 */
 

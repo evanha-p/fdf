@@ -59,6 +59,7 @@ struct s_point
 	int		cart_x;
 	int		cart_y;
 	double	zoom;
+	char	*color;
 	t_point	*next;
 	t_point	*below;
 };
@@ -96,6 +97,11 @@ void	check_nodes(t_point *point, t_var *v);
 void	check_line(char *str);
 void	errors(char *str);
 
+//Functions located in event_modifiers.c
+t_point	*zoom_points(t_point *point, float zoom);
+t_point	*move_points(t_point *point, int x, int y);
+t_point	*reset_values(t_point *point);
+
 //Functions located in events.c
 int		key_event(int key, t_ptrs *pointers);
 
@@ -104,17 +110,14 @@ t_point *sideways_projection(t_point *points);
 t_point	*cartesian_to_isometric(t_point *points);
 t_point	*center(t_point *point, t_var *v);
 t_point	*scope(t_point *point, t_var *v);
-t_point	*move_points(t_point *point, int x, int y);
-t_point	*zoom_points(t_point *point, float zoom);
 
 //Functions located in reader.c
 t_point	*reader(char *argv, t_var *v);
 
 //Functions located in utils.c
 void	drawing_loop(t_point *start, t_point *end, t_mlx *mlx, char *str);
-int		get_color(int height);
+int		get_color(t_point *point);
 t_point	*new_point(t_point *point);
 void	initialize_variables(t_var *var);
-t_point	*reset_values(t_point *point);
 t_point	*set_points_below(t_point *point);
 #endif

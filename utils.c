@@ -57,27 +57,6 @@ t_point	*set_points_below(t_point *point)
 	return (head);
 }
 
-/*
-Sets point->x and point->y values to the original
-values they were after sent to the function scope.
-Also sets the zoom back to its original value of 1.
-*/
-
-t_point	*reset_values(t_point *point)
-{
-	t_point	*head;
-
-	head = point;
-	while (point)
-	{
-		point->x = point->cart_x;
-		point->y = point->cart_y;
-		point->zoom = 1;
-		point = point->next;
-	}
-	return (head);
-}
-
 /*Sets all variables in struct t_var to 0*/
 
 void	initialize_variables(t_var *var)
@@ -106,12 +85,12 @@ t_point	*new_point(t_point *point)
 	return (next);
 }
 
-int	get_color(int height)
+int	get_color(t_point *point)
 {
-	if (height)
+	if (!(ft_strcmp("white", point->color)))
 		return (0xFFFFFF);
-	else
-		return (0xFFFFFF);
+	else if (!(ft_strcmp("height", point->color)))
+		return (0xFFFFFF - point->height);
 }
 
 /*Helper function for draw_straight. Does the drawing.*/
@@ -129,7 +108,7 @@ void	drawing_loop(t_point *start, t_point *end, t_mlx *mlx, char *str)
 		{
 			if (!(v.x_coord > 1000 || v.x_coord < 0))
 				mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, v.x_coord, \
-						(end->y * end->zoom), get_color(end->z));
+						(end->y * end->zoom), get_color(end));
 			v.x_coord++;
 		}
 	}
@@ -139,7 +118,7 @@ void	drawing_loop(t_point *start, t_point *end, t_mlx *mlx, char *str)
 		{
 			if (!(v.y_coord > 1000 || v.y_coord < 0))
 				mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, (end->x * end->zoom), \
-						v.y_coord, get_color(end->z));
+						v.y_coord, get_color(end));
 			v.y_coord++;
 		}
 	}
