@@ -6,15 +6,15 @@
 #    By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/06 13:24:17 by evanha-p          #+#    #+#              #
-#    Updated: 2022/09/23 18:46:42 by evanha-p         ###   ########.fr        #
+#    Updated: 2022/10/05 16:09:18 by evanha-p         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-# CFLAGS = -Wall -Wextra -Werror -L /usr/local/lib -lmlx -I /minilibx/ \
+CFLAGS = -Wall -Wextra -Werror -L /usr/local/lib -lmlx -I /minilibx/ \
 		 -framework OpenGL -framework AppKit -g
 # Flags for compiling at home
-CFLAGS = -Wall -Wextra -Werror -L ./minilibx -lmlx -I ./minilibx \
+# CFLAGS = -Wall -Wextra -Werror -L ./minilibx -lmlx -I ./minilibx \
 				 -framework OpenGL -framework AppKit -g
 NAME = fdf
 SRC = draw.c main.c utils.c  modify.c reader.c errors.c events.c \
