@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/05 18:01:51 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/05 19:04:44 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ t_point	*change_height(t_point *point, int change);
 
 //Functions located in events.c
 int		key_event(int key, t_ptrs *pointers);
+void	draw_menu(t_mlx *mlx);
 
 //Functions located in modify.c
 t_point *sideways_projection(t_point *points);

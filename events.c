@@ -6,12 +6,35 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 18:42:08 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/05 18:11:59 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/05 19:20:14 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+void	draw_menu(t_mlx *mlx)
+{
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 10, 0xB9FF00, \
+			"esc = exit");
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 30, 0xB9FF00, \
+			"UP/DOWN/LEFT/RIGHT arrow keys = move image");
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 50, 0xB9FF00, \
+			"+/- = zoom image");
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 70, 0xB9FF00, \
+			"w/s = raise/lower the height");
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 90, 0xB9FF00, \
+			"r/i = switch between sideways and isometric projection");
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 110, 0xB9FF00, \
+			"w/s = raise/lower the height");
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 130, 0xB9FF00, \
+			"1 = set color to white");
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 150, 0xB9FF00, \
+			"2 = set color to red");
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 170, 0xB9FF00, \
+			"3 = set color to green");
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 190, 0xB9FF00, \
+			"4 = highlight negative and positive height values");
+}
 /*
 Function handles the moving and zooming events. It uses
 functions move_points and zoom_points that are located

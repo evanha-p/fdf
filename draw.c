@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:53:43 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/05 17:36:58 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/05 19:04:25 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,6 +236,7 @@ void	draw_map(t_mlx *mlx, t_point *point)
 	t_point	*head;
 
 	head = point;
+	draw_menu(mlx);
 	while (point->next)
 	{
 		next = point->next;
