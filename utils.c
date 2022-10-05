@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:04:24 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/04 19:44:37 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/05 17:42:39 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,15 @@ int	get_color(t_point *start, t_point *end)
 		return (0xFF2D00);
 	else if (start->color == GREEN)
 		return (0x6CFF00);
-	else if (start->color == HIGHLIGHT && (start->z > 0 || end->z > 0))
-		return (0xE800FF);
+	else if (start->color == HIGHLIGHT)
+	{
+		if (start->z > 0 || end->z > 0)
+			return (0xE800FF);
+		else if (start->z == 0 || end->z == 0)
+			return (0xFFFFFF);
+		else
+			return (0x000FFF);
+	}
 	else
 		return (0xFFFFFF);
 }

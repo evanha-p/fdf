@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/05 16:53:32 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/05 18:01:51 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 // RIGHT = arrow right
 // ZOOM_BIGGER = +
 // ZOOM_SMALLER = -
+// RAISE = w
+// LOWER = s
 // ROTATE = R
 // ISOMETRIC = I
 // WHITE = nbr 1
@@ -39,6 +41,8 @@
 # define RIGHT 124
 # define ZOOM_BIGGER 24
 # define ZOOM_SMALLER 27
+# define RAISE 13
+# define LOWER 1
 # define ROTATE 15
 # define ISOMETRIC 34
 # define WHITE 18
@@ -120,6 +124,7 @@ t_point	*zoom_points(t_point *point, float zoom);
 t_point	*move_points(t_point *point, int x, int y);
 t_point	*reset_values(t_point *point);
 t_point	*change_color(t_point *point, int color);
+t_point	*change_height(t_point *point, int change);
 
 //Functions located in events.c
 int		key_event(int key, t_ptrs *pointers);

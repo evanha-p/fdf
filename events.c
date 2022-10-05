@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 18:42:08 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/04 19:21:11 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/05 18:11:59 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ static	void	move_picture(int key, t_ptrs *pointers)
 		pointers->point = zoom_points(pointers->point, 1.1);
 	if (key == ZOOM_SMALLER)
 		pointers->point = zoom_points(pointers->point, 0.9);
+	if (key == RAISE)
+		pointers->point = change_height(pointers->point, 1);
+	if (key == LOWER)
+		pointers->point = change_height(pointers->point, -1);
 	mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
 	draw_map(pointers->mlx, pointers->point);
 }
@@ -94,7 +98,8 @@ int	key_event(int key, t_ptrs *pointers)
 		ft_putstr("Exited program\n");
 		exit(0);
 	}
-	if ((key >= LEFT && key <= UP) || key == ZOOM_BIGGER || key == ZOOM_SMALLER)
+	if ((key >= LEFT && key <= UP) || key == ZOOM_BIGGER ||key == ZOOM_SMALLER \
+			|| key == RAISE || key == LOWER)
 		move_picture(key, pointers);
 	else if (key == ROTATE || key == ISOMETRIC)
 		change_projection(key, pointers);
