@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 13:48:35 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/04 19:17:47 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/05 19:51:32 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ t_point	*scope(t_point *point, t_var *v)
 
 	tmp = point;
 	if (v->y_coord >= v->x_coord)
-		v->multiplier = 500 / v->y_coord;
+		v->multiplier = (IMG_X / 2) / v->y_coord;
 	else
-		v->multiplier = 500 / v->x_coord;
+		v->multiplier = (IMG_Y / 2) / v->x_coord;
 	while (point)
 	{
 		point->cart_x *= v->multiplier;
@@ -49,8 +49,8 @@ t_point *center(t_point *point, t_var *v)
 	mid_y = v->y_coord / 2;
 	while (point)
 	{
-		point->x = point->x + 500 - mid_x;
-		point->y = point->y + 500 - mid_y;
+		point->x = point->x + IMG_X / 2 - mid_x;
+		point->y = point->y + IMG_Y / 4 - mid_y;
 		point = point->next;
 	}
 	return (head);

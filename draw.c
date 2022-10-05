@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:53:43 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/05 19:04:25 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/05 19:42:45 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,9 @@ we do incerement the y.
 
 !!Note!!:
 the function below only works for lines where 0 < slope(=m) < 1.
+Note 2:
+The if statement on rows 111-112 prevents map being drawn if the image is either
+outside of the screen or on top of the menu.
 */
 
 void	gentle_slope(t_mlx *mlx, t_point *start, t_point *end, t_var v)
@@ -106,7 +109,8 @@ void	gentle_slope(t_mlx *mlx, t_point *start, t_point *end, t_var v)
 	v.bresenham = 2 * v.delta_y - v.delta_x;
 	while (v.x_coord != (int)(end->x * end->zoom))
 	{
-		if (!(v.x_coord > 1000 || v.y_coord < 0 || v.y_coord > 1000 || v.y_coord < 0))
+		if (!(v.x_coord > IMG_X || v.x_coord  < 0 || v.y_coord > IMG_Y || v.y_coord < 0 \
+					|| (v.y_coord < MENU_Y && v.x_coord < MENU_X)))
 			mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, v.x_coord, \
 					v.y_coord, get_color(start, end));
 		if (v.bresenham < 0)
@@ -145,6 +149,10 @@ Example:
 	  |	  \
 	  |	   distance 1
 	pixel 1 (x, y)
+
+Note:
+The if statement on rows 167-168 prevents map being drawn if the image is either
+outside of the screen or on top of the menu.
 */
 
 void	steep_slope(t_mlx *mlx, t_point *start, t_point *end, t_var v)
@@ -156,7 +164,8 @@ void	steep_slope(t_mlx *mlx, t_point *start, t_point *end, t_var v)
 	v.bresenham = 2 * v.delta_x - v.delta_y;
 	while (v.y_coord != (int)(end->y * end->zoom))
 	{
-		if (!(v.x_coord > 1000 || v.x_coord  < 0 || v.y_coord > 1000 || v.y_coord < 0))
+		if (!(v.x_coord > IMG_X || v.x_coord  < 0 || v.y_coord > IMG_Y || v.y_coord < 0 \
+					|| (v.y_coord < MENU_Y && v.x_coord < MENU_X)))
 			mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, v.x_coord, \
 					v.y_coord, get_color(start, end));
 		if (v.bresenham < 0)

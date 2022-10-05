@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/05 19:04:44 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/05 19:52:17 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,13 @@
 # define RED 19
 # define GREEN 20
 # define HIGHLIGHT 21
+
+// Values to prevent the map going over the menu or outside of the screen
+// IMG_X and IMG_Y also define the screensize
+# define MENU_Y 215
+# define MENU_X 555
+# define IMG_X 1000
+# define IMG_Y 1000
 
 /* Stores all mlx related data */
 
