@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/04 19:48:49 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/05 16:53:32 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ void	draw_straight(t_mlx *mlx, t_point *start, t_point *end, t_var v);
 //Functions located in errors.c
 void	check_malloc(void *ptr);
 void	check_nodes(t_point *point, t_var *v);
+void	check_data(char **str);
 void	check_line(char *str);
 void	errors(char *str);
 

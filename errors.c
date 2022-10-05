@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:16:27 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/04 19:22:22 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/05 17:09:57 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,53 @@ void	errors(char *str)
 }
 
 /*
-Checks that the line received from the callee function (see reader function in reader.c)
-only contains spaces or digits.
+Function checks that each point receives only contains the height and
+the color for the point. Height can only contain numbers and
+- for negative numbers. The color is given as a hexadecimal and separated
+from the height by a , symbol.
+
+Examples for correct values:
+14
+9,0xFFFFFF
+
+Examples for incorrect values:
+14ab
+ab14
+A
+0xFFFFFF,14
+14,0xFFFFFF,0
+
+The function is called by set_values function located in reader.c.
+The function calls errors() if it detects incorrect input.
 */
-void	check_line(char *str)
+
+void	check_data(char **str)
 {
 	int		i;
 
 	i = 0;
 	while (str[i])
+		i++;
+	if (i > 2)
+		errors("invalid character");
+	i = 0;
+	while (str[0][i])
 	{
-		if (!(ft_isdigit(str[i])) && str[i] != ' ' && str[i] != '-')
+		if (!(ft_isdigit(str[0][i])) && str[0][0] != '-')
 			errors("invalid character");
 		i++;
+	}
+	if (str[1])
+	{
+		i = 2;
+		if (str[1][0] != 0 && str[1][1] != 'x')
+			errors("invalid character");
+		while (str[1][i])
+		{
+			if (!(ft_isdigit(str[1][i])) && (str[1][i] < 'A' || str[1][i] > 'F'))
+				errors("invalid character");
+			i++;
+		}
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 12:45:08 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/09/28 15:18:58 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/05 16:52:48 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,19 @@ static	t_point	*set_values(t_point *point, char *line, t_var *v)
 {
 	int		i;
 	char	**values;
+	char	**point_data;
 
 	i = 0;
 	values = ft_strsplit(line, ' ');
 	while (values[i])
 	{
+		point_data = ft_strsplit(values[i], ',');
 		point->cart_y = v->y_coord;
 		point->y = v->y_coord;
 		point->cart_x = i;
 		point->x = i;
-		point->z = ft_atoi(values[i]);
+		check_data(point_data);
+		point->z = ft_atoi(point_data[0]);
 		point->zoom = 1;
 		point->color = WHITE;
 		point = new_point(point);
@@ -120,7 +123,6 @@ t_point	*reader(char *argv, t_var *v)
 	while (v->ret > 0)
 	{
 		v->ret = get_next_line(v->fd, &line);
-		check_line(line);
 		temp = set_values(temp, line, v);
 		v->y_coord++;
 	}
