@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:56:51 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/06 14:16:41 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/06 16:50:24 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 	check_malloc((void *)pointers->v);
 	initialize_variables(pointers->v);
 	if (argc != 2)
-		return (0);
+		exit(0);
 	pointers->point = reader(argv[1], pointers->v);
 	pointers->point = set_points_below(pointers->point);
 	pointers->point = scope(pointers->point, pointers->v);

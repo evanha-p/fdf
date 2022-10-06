@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 18:11:07 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/07/06 16:28:40 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/06 16:28:46 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define INT_MAX_LEN 12
 /* macros below are used in function get_next_line */
 # define GNL_MAX_FD 4096
-# define GNL_BUFF_SIZE 50
+# define GNL_BUFF_SIZE 1
 
 typedef struct s_list
 {

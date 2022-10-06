@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 18:42:08 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/06 13:37:21 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/06 15:59:57 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ int	key_event(int key, t_ptrs *pointers)
 {
 	if (key == ESC)
 	{
+		free_pointers(pointers);
 		ft_putstr("Exited program\n");
 		exit(0);
 	}

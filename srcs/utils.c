@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:04:24 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/06 13:55:22 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/06 16:41:10 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ t_point	*set_points_below(t_point *point)
 			point->below = next;
 		point = point->next;
 	}
-	return (head);
+	point = head;
+	return (point);
 }
 
 /*Sets all variables in struct t_var to 0*/

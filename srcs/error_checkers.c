@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 13:16:43 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/06 13:23:37 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/06 16:05:58 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,11 @@ void	check_data(char **str)
 		i++;
 	}
 	if (str[1])
+	{
 		check_hexadecimal(str[1]);
+		free(str[1]);
+	}
+	free(str[0]);
 }
 
 /*

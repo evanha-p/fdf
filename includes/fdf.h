@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/06 14:16:41 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/06 15:41:23 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,9 @@ typedef struct s_ptrs
 	t_mlx	*mlx;
 	t_var	*v;
 }	t_ptrs;
+
+//Functions located in cleaner.c
+void	free_pointers(t_ptrs *pointers);
 
 //Functions located in draw.c:
 void	draw_map(t_mlx *mlx, t_point *point);

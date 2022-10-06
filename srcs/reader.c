@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 12:45:08 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/05 16:52:48 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/06 17:05:40 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,11 @@ static	t_point	*set_values(t_point *point, char *line, t_var *v)
 		point->zoom = 1;
 		point->color = WHITE;
 		point = new_point(point);
+		free(values[i]);
+		free(point_data);
 		i++;
 	}
+	free(values);
 	point->next = NULL;
 	return (point);
 }
@@ -125,6 +128,7 @@ t_point	*reader(char *argv, t_var *v)
 		v->ret = get_next_line(v->fd, &line);
 		temp = set_values(temp, line, v);
 		v->y_coord++;
+		free(line);
 	}
 	v->y_coord--;
 	temp = head;
