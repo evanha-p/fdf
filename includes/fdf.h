@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/06 14:05:44 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/06 14:07:30 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ int		key_event(int key, t_ptrs *pointers);
 void	draw_menu(t_mlx *mlx);
 
 //Functions located in modify.c
-t_point *sideways_projection(t_point *points);
+t_point	*sideways_projection(t_point *points);
 t_point	*cartesian_to_isometric(t_point *points);
 t_point	*center(t_point *point, t_var *v);
 t_point	*scope(t_point *point, t_var *v);
