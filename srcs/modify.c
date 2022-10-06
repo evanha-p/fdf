@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 13:48:35 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/05 19:55:43 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/06 13:40:37 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_point	*scope(t_point *point, t_var *v)
 Aims to center the picture in the center of the screen.
 */
 
-t_point *center(t_point *point, t_var *v)
+t_point	*center(t_point *point, t_var *v)
 {
 	t_point	*head;
 	float	mid_x;

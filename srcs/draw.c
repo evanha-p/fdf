@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:53:43 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/05 19:42:45 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/06 14:02:17 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,23 @@ v.delta_y = 0 and v.delta_x > 0
 The starting point will be on the left and the end on the right.
 If v.delta_x < 0 the end will be on the left and the start
 will be on the right so we need to draw the line from right to left.
-In that case we simply flip the points we send to function
-drawing_loop so it will consider the true starting point
+In that case we simply flip the points we send to the function
+so it will consider the true starting point
 as the end and vice versa.
 
-The drawing_loop function is located in utils.c
+The draw_horizontal and vertical functions are located in draw_helper.c
 */
 
 void	draw_straight(t_mlx *mlx, t_point *start, t_point *end, t_var v)
 {
 	if (v.delta_y == 0 && v.delta_x > 0)
-		drawing_loop(start, end, mlx, "horizontal");
+		draw_horizontal(start, end, mlx);
 	else if (v.delta_y == 0 && v.delta_x < 0)
-		drawing_loop(end, start, mlx, "horizontal");
+		draw_horizontal(end, start, mlx);
 	else if (v.delta_x == 0 && v.delta_y > 0)
-		drawing_loop(start, end, mlx, "vertical");
+		draw_vertical(start, end, mlx);
 	else
-		drawing_loop(end, start, mlx, "vertical");
+		draw_vertical(end, start, mlx);
 }
 /*
 This function uses bresenham's algorithm to decide whether to increment the
@@ -109,7 +109,8 @@ void	gentle_slope(t_mlx *mlx, t_point *start, t_point *end, t_var v)
 	v.bresenham = 2 * v.delta_y - v.delta_x;
 	while (v.x_coord != (int)(end->x * end->zoom))
 	{
-		if (!(v.x_coord > IMG_X || v.x_coord  < 0 || v.y_coord > IMG_Y || v.y_coord < 0 \
+		if (!(v.x_coord > IMG_X || v.x_coord < 0 \
+					|| v.y_coord > IMG_Y || v.y_coord < 0 \
 					|| (v.y_coord < MENU_Y && v.x_coord < MENU_X)))
 			mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, v.x_coord, \
 					v.y_coord, get_color(start, end));
@@ -164,7 +165,8 @@ void	steep_slope(t_mlx *mlx, t_point *start, t_point *end, t_var v)
 	v.bresenham = 2 * v.delta_x - v.delta_y;
 	while (v.y_coord != (int)(end->y * end->zoom))
 	{
-		if (!(v.x_coord > IMG_X || v.x_coord  < 0 || v.y_coord > IMG_Y || v.y_coord < 0 \
+		if (!(v.x_coord > IMG_X || v.x_coord < 0 \
+					|| v.y_coord > IMG_Y || v.y_coord < 0 \
 					|| (v.y_coord < MENU_Y && v.x_coord < MENU_X)))
 			mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, v.x_coord, \
 					v.y_coord, get_color(start, end));
@@ -201,7 +203,7 @@ void	draw_bresenham(t_mlx *mlx, t_point *start, t_point *end)
 	v.delta_y = end->y - start->y;
 	if (v.delta_x == 0 || v.delta_y == 0)
 		draw_straight(mlx, start, end, v);
-	else	
+	else
 	{
 		v.slope = (float)v.delta_y / (float)v.delta_x;
 		if (v.slope < 1 && v.slope > 0)

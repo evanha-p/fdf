@@ -6,7 +6,7 @@
 /*   By: evanha-p <evanha-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 21:42:41 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/05 18:12:18 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/06 13:25:24 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ Modifies the x and y values of each point according to the
 button press. This way we can move the picture.
 */
 
-t_point *move_points(t_point *point, int x, int y)
+t_point	*move_points(t_point *point, int x, int y)
 {
 	t_point	*head;
 
@@ -75,7 +75,7 @@ t_point	*reset_values(t_point *point)
 	return (head);
 }
 
-t_point *change_color(t_point *point, int color)
+t_point	*change_color(t_point *point, int color)
 {
 	t_point	*head;
 
@@ -88,7 +88,7 @@ t_point *change_color(t_point *point, int color)
 	return (head);
 }
 
-t_point *change_height(t_point *point, int change)
+t_point	*change_height(t_point *point, int change)
 {
 	t_point	*head;
 

@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 13:16:43 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/06 13:17:56 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/06 13:23:37 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,10 @@ void	check_data(char **str)
 Helper function for check_nodes. Checks that all the rows in the original
 file contain same amount of points.
 
-Note: to help with readability in the notes I use "point" when talking about a point
-in the linked list. I use "POINT" (in all caps) when talking about
-the verb "point" (like for example when pointer POINTS to something).
+Note: to help with readability in the notes I use "point" when talking
+about a point in the linked list. I use "POINT" (in all caps) when
+talking about the verb "point"
+(like for example when pointer POINTS to something).
 
 On lines 78 and 79 we store the maximum number of cart_x in he first row
 to a variable max_x. We use this variable to check that all the lines
@@ -88,18 +89,18 @@ the current point to POINT to the next point in the list).
 
 If we detect that the cart_y in current point is greater than
 in the previous we know we have switched to the next row.
-Then we take the cart_x from the previous point in the previous row (prev_point->cart_x)
-and make sure it is equal to max_x. If it's not we know the row before
-had either more or less points stored and we call function errors.
-(See notes in reader.c for further explanation on why I check this.
-The explanation starts on row 68.)
+Then we take the cart_x from the previous point in the previous
+row (prev_point->cart_x) and make sure it is equal to max_x.
+If it's not we know the row before had either more or less points
+stored and we call function errors. (See notes in reader.c for further
+explanation on why I check this. The explanation starts on row 73.)
 
 After exiting the while loop we check the cart_x from the previous point.
 Without this step we wouldn't check the last row in the file.
 
-The function returns the number of rows (max_x). We have to increase max_x by one
-at the end since max_x stores the max value of cart_x but we want to return
-the number of points in a row.
+The function returns the number of rows (max_x). We have to increase
+max_x by one at the end since max_x stores the max value of cart_x but
+we want to return the number of points in a row.
 Example:
 
 0 0 0 0
@@ -111,7 +112,7 @@ Example:
    but it is the fourth point in the row. Hence number of points in the
    row is 4 not 3.
 */
-static	int check_row_lengths(t_point *point)
+static	int	check_row_lengths(t_point *point)
 {
 	t_point	*head;
 	t_point	*prev_point;

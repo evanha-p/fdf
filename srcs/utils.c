@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:04:24 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/05 19:43:42 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/06 13:55:22 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,41 +104,4 @@ int	get_color(t_point *start, t_point *end)
 	}
 	else
 		return (0xFFFFFF);
-}
-
-/*
-Helper function for draw_straight. Does the drawing.
-The if statements on rows 125-126 and 136-137 prevent the
-map from being drawn if we are either over the menu or outside the screen.
-*/
-
-void	drawing_loop(t_point *start, t_point *end, t_mlx *mlx, char *str)
-{
-	t_var	v;
-
-	initialize_variables(&v);
-	v.x_coord = start->x * start->zoom;
-	v.y_coord = start->y * start->zoom;
-	if (!(ft_strcmp("horizontal", str)))
-	{
-		while (v.x_coord <= (int)(end->x * end->zoom))
-		{
-			if (!(v.x_coord > IMG_X || v.x_coord  < 0 || v.y_coord > IMG_Y || v.y_coord < 0 \
-					|| (v.y_coord < MENU_Y && v.x_coord < MENU_X)))
-				mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, v.x_coord, \
-						(end->y * end->zoom), get_color(start, end));
-			v.x_coord++;
-		}
-	}
-	else
-	{
-		while (v.y_coord <= (int)(end->y * end->zoom))
-		{
-			if (!(v.x_coord > IMG_X || v.x_coord  < 0 || v.y_coord > IMG_Y || v.y_coord < 0 \
-					|| (v.y_coord < MENU_Y && v.x_coord < MENU_X)))
-				mlx_pixel_put(mlx->mlx_ptr, mlx->win_ptr, (end->x * end->zoom), \
-						v.y_coord, get_color(start, end));
-			v.y_coord++;
-		}
-	}
 }

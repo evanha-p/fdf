@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 18:42:08 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/05 19:20:14 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/06 13:37:21 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,6 @@ in event_modifiers.c
 
 static	void	move_picture(int key, t_ptrs *pointers)
 {
-	t_mlx	*mlx;
-
-	mlx = (t_mlx *)malloc(sizeof(t_mlx));
-	check_malloc((void *)mlx);
-	mlx = pointers->mlx;
 	if (key == UP)
 		pointers->point = move_points(pointers->point, 0, -10);
 	if (key == DOWN)
@@ -64,7 +59,7 @@ static	void	move_picture(int key, t_ptrs *pointers)
 		pointers->point = change_height(pointers->point, 1);
 	if (key == LOWER)
 		pointers->point = change_height(pointers->point, -1);
-	mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
+	mlx_clear_window(pointers->mlx->mlx_ptr, pointers->mlx->win_ptr);
 	draw_map(pointers->mlx, pointers->point);
 }
 
@@ -75,18 +70,13 @@ to another
 
 static	void	change_projection(int key, t_ptrs *pointers)
 {
-	t_mlx	*mlx;
-
-	mlx = (t_mlx *)malloc(sizeof(t_mlx));
-	check_malloc((void *)mlx);
-	mlx = pointers->mlx;
 	pointers->point = reset_values(pointers->point);
 	if (key == ISOMETRIC)
 		pointers->point = cartesian_to_isometric(pointers->point);
 	if (key == ROTATE)
 		pointers->point = sideways_projection(pointers->point);
 	center(pointers->point, pointers->v);
-	mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
+	mlx_clear_window(pointers->mlx->mlx_ptr, pointers->mlx->win_ptr);
 	draw_map(pointers->mlx, pointers->point);
 }
 
@@ -111,17 +101,12 @@ We use macros to help with the readability.
 
 int	key_event(int key, t_ptrs *pointers)
 {
-	t_mlx	*mlx;
-
-	mlx = (t_mlx *)malloc(sizeof(t_mlx));
-	check_malloc((void *)mlx);
-	mlx = pointers->mlx;
 	if (key == ESC)
 	{
 		ft_putstr("Exited program\n");
 		exit(0);
 	}
-	if ((key >= LEFT && key <= UP) || key == ZOOM_BIGGER ||key == ZOOM_SMALLER \
+	if ((key >= LEFT && key <= UP) || key == ZOOM_BIGGER || key == ZOOM_SMALLER \
 			|| key == RAISE || key == LOWER)
 		move_picture(key, pointers);
 	else if (key == ROTATE || key == ISOMETRIC)

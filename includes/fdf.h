@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/06 12:43:59 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/06 14:05:44 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,11 +119,16 @@ void	steep_slope(t_mlx *mlx, t_point *start, t_point *end, t_var v);
 void	gentle_slope(t_mlx *mlx, t_point *start, t_point *end, t_var v);
 void	draw_straight(t_mlx *mlx, t_point *start, t_point *end, t_var v);
 
-//Functions located in errors.c
+//Functions located in draw_helper.c
+void	draw_horizontal(t_point *start, t_point *end, t_mlx *mlx);
+void	draw_vertical(t_point *start, t_point *end, t_mlx *mlx);
+
+//Functions located in error_checkers.c
 void	check_malloc(void *ptr);
 void	check_nodes(t_point *point, t_var *v);
 void	check_data(char **str);
-void	check_line(char *str);
+
+//Functions located in errors.c
 void	errors(char *str);
 
 //Functions located in event_modifiers.c
@@ -147,7 +152,6 @@ t_point	*scope(t_point *point, t_var *v);
 t_point	*reader(char *argv, t_var *v);
 
 //Functions located in utils.c
-void	drawing_loop(t_point *start, t_point *end, t_mlx *mlx, char *str);
 int		get_color(t_point *start, t_point *end);
 t_point	*new_point(t_point *point);
 void	initialize_variables(t_var *var);
