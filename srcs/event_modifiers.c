@@ -6,7 +6,7 @@
 /*   By: evanha-p <evanha-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 21:42:41 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/07 15:02:00 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/07 16:08:45 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,10 +124,7 @@ t_point	*change_height(t_point *point, int change)
 	head = point;
 	while (point)
 	{
-		if (point->z < 0)
-			point->y += point->z * change;
-		if (point->z > 0)
-			point->y -= point->z * change;
+		point->y -= point->z * change;
 		point = point->next;
 	}
 	return (head);
