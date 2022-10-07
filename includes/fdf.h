@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:54:58 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/07 15:17:21 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/07 18:25:14 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FDF_H
 
 # include "minilibx/mlx.h"
-# include "../libft/libft.h"
+# include "../libft/includes/libft.h"
 # include <stdlib.h>
 # include <math.h>
 # include <fcntl.h>
