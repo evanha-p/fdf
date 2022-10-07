@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:16:27 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/06 13:18:21 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/07 14:15:27 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	errors(char *str)
 		ft_putstr_fd("malloc returned null.\n", 2);
 	if (!(ft_strcmp("no nodes", str)))
 		ft_putstr_fd("either the file is empty or only contains spaces.\n", 2);
+	if (!(ft_strcmp("directory", str)))
+		ft_putstr_fd("The file is a directory.\n", 2);
 	ft_putstr_fd("Usage: ./fdf <your file here>\n", 2);
 	exit(0);
 }

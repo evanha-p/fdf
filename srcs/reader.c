@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 12:45:08 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/06 17:28:42 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/07 14:15:55 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,8 @@ t_point	*reader(char *argv, t_var *v)
 	while (v->ret > 0)
 	{
 		v->ret = get_next_line(v->fd, &line);
+		if (v->ret == -1)
+			errors("directory");
 		temp = set_values(temp, line, v);
 		v->y_coord++;
 		free(line);
