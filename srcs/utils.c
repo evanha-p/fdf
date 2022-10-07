@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:04:24 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/06 16:41:10 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/07 15:11:53 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,15 @@ t_point	*new_point(t_point *point)
 	point->next = next;
 	return (next);
 }
+
+/*
+Function returns a color value based on the value stored
+in start->color. If the value stored in color is
+set to HIGHLIGHT the function returns magenta color
+if either the starting or ending point is positive.
+It returns white if the either one is 0. Otherwise
+it returns blue.
+*/
 
 int	get_color(t_point *start, t_point *end)
 {

@@ -6,7 +6,7 @@
 /*   By: evanha-p <evanha-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 21:42:41 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/06 13:25:24 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/07 15:02:00 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_point	*zoom_points(t_point *point, float zoom)
 }
 
 /*
-The function gets called if W, A, S, or D is pressed while the
+The function gets called if arrow keys are pressed while the
 program is running. The callee function is located in events.c.
 Modifies the x and y values of each point according to the
 button press. This way we can move the picture.
@@ -75,6 +75,28 @@ t_point	*reset_values(t_point *point)
 	return (head);
 }
 
+/*
+Changes the color -value in each point. The color is
+stored as a int but does NOT correspond to the actual
+hexadecimal colorvalue. Instead it corresponds
+to the key value which program receives when a button
+is pressed.
+
+For example:
+To change to color white one would press number 1
+on a keyboard. When 1 is pressed the program receives
+a keypress value 18. This value is stored to point->color.
+
+Function get_color, located in utils., checks the
+point->color value stored in a point and sends the right
+hexadecimal colorvalue to mlx_pixel_put.
+
+I decided to do this in this way so we can use the
+same macro for the keypress and for sending the
+value to change_color (see function color in events.c).
+This helps with readability.
+*/
+
 t_point	*change_color(t_point *point, int color)
 {
 	t_point	*head;
@@ -87,6 +109,13 @@ t_point	*change_color(t_point *point, int color)
 	}
 	return (head);
 }
+
+/*
+Changes the y value if w or s is pressed when the program is
+running. Only changes the y value for a point if its z
+value is other than 0. This way pressing w or s
+we can "amplify" the height values in the picture.
+*/
 
 t_point	*change_height(t_point *point, int change)
 {

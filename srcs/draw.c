@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:53:43 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/06 14:02:17 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/07 14:34:55 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,19 @@ The variable v.bresenham = distance 1 - distance 2. So that's why
 if v.bresenham is negative, we don't increment the y and if it is positive
 we do incerement the y.
 
-!!Note!!:
-the function below only works for lines where 0 < slope(=m) < 1.
-Note 2:
+Note:
+
+The zoom variable is set to 1 by default. We can modify the value if we want
+to make the object bigger or smaller (see function zoom_points in
+event_modifiers.c). By using a separate varibale zoom we can alter how
+we draw the lines without altering the actual x and y values of the points.
+If we were to modify the coordinates we would loose accuracy when making
+the object really small since x and y are stored as int so they get
+rounded when modified. This would cause distortion in the object after
+making the object small and then increasing the size.
+
+The function below only works for lines where 0 < slope(=m) < 1.
+
 The if statement on rows 111-112 prevents map being drawn if the image is either
 outside of the screen or on top of the menu.
 */
@@ -143,7 +153,7 @@ Example:
 
 			  actual location for the point according to line equation y = mx + c
 			 /
-	.---.	  |	  .---.
+	.---.	|   .---.
 	|   | --x---|   | <- pixel 2 ( x + 1, y)
 	'---' \   \ '---'
 	  ^    \   distance 2
@@ -152,6 +162,16 @@ Example:
 	pixel 1 (x, y)
 
 Note:
+
+The zoom variable is set to 1 by default. We can modify the value if we want
+to make the object bigger or smaller (see function zoom_points in
+event_modifiers.c). By using a separate varibale zoom we can alter how
+we draw the lines without altering the actual x and y values of the points.
+If we were to modify the coordinates we would loose accuracy when making
+the object really small since x and y are stored as int so they get
+rounded when modified. This would cause distortion in the object after
+making the object small and then increasing the size.
+
 The if statement on rows 167-168 prevents map being drawn if the image is either
 outside of the screen or on top of the menu.
 */
@@ -192,6 +212,11 @@ differently depengin if the slope is greater or less than 1.
 In function below we calculate the slope and depending if
 it is greater or less than one we call either function
 steep_slope(if slope > 1) or gentle_slope(if 0 < slope < 1)
+
+If either delta_x or delta_y is 0 we call function draw_straight
+because the slope is either 0 or undefined. Slope is
+undefined if delta_x = 0 (the line goes straight up/down)
+since devision with 0 is undefined.
 */
 
 void	draw_bresenham(t_mlx *mlx, t_point *start, t_point *end)
@@ -233,12 +258,15 @@ To do this we use pointer "below", which points to the next
 point with the same x value as the current point. This
 pointer is set up in the function set_points_below
 located in utils.c.
+
 IMPORTANT: Since we set the last rows below -pointers
 to NULL in the set_points_below function the second
 draw_bresenham -function doesn't get called when
-we go thourgh the last row of values since the
+we go through the last row of values since the
 if (point->below) will be always false because
-point->below = NULL.
+point->below = NULL. This is intentional since when
+we are on the last row there are no points below to
+which draw a line.
 */
 
 void	draw_map(t_mlx *mlx, t_point *point)

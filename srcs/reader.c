@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 12:45:08 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/07 14:15:55 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/07 15:08:19 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,11 @@ The function receives a row (stored in variable line) from the original
 file and splits it to character string using space (' ') as a delimeter using
 ft_strsplit. The strings are stored in variable values.
 
-After splitting we go through the values and use ft_atoi
+After splitting we do another split using comma (,). We do this since in one
+of the example maps a color value is given to a point by giving a
+hexadecimal value after the height value separated by comma.
+
+We go through the values and use ft_atoi
 to get the height and store it to point->z.
 
 The x-value is based on the string we are currently on.
@@ -66,9 +70,10 @@ Function errors is used throughout the program and it gets called if any
 errors are detected. Based on the string used as an argument errors function
 can detect what kind of an error happened and print corresponding error message.
 
-We read the file and check that it only contains digits or spaces with
-check_line -function. Then we store the values of the points to a
-linked list by using function set_values.
+We store the values of the points to a linked list by using function
+set_values. The set values function uses helper function check_data to check
+that the map received only contains digits, spaces, commas and hexadecimal
+values.
 Note: we use varibale v->y_coord to keep track on the row we are on.
 When we exit the while loop we minus y_coord by 1 since while loop
 "fires" once after we have already read all the rows.

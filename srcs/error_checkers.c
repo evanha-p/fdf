@@ -6,11 +6,16 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 13:16:43 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/06 16:05:58 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/07 15:07:42 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+/*
+Helper function for  check_data. Checks that the received
+value is a hexadecimal.
+*/
 
 static	void	check_hexadecimal(char *str)
 {
@@ -49,6 +54,14 @@ A
 
 The function is called by set_values function located in reader.c.
 The function calls errors() if it detects incorrect input.
+
+Note:
+Despite checking the hexadecimal the feature itself is NOT implemented
+yet. So the program can read files with specified colors for a point
+but can't do anything with the information. I added the check
+because one test map provided to us gave colorvalues to few points
+in this way but I haven't implemented the feature yet because it was
+not required.
 */
 
 void	check_data(char **str)
@@ -84,10 +97,10 @@ about a point in the linked list. I use "POINT" (in all caps) when
 talking about the verb "point"
 (like for example when pointer POINTS to something).
 
-On lines 78 and 79 we store the maximum number of cart_x in he first row
+On lines 143 and 144 we store the maximum number of cart_x in he first row
 to a variable max_x. We use this variable to check that all the lines
 have the same number of points. To achieve this we use pointer
-prev_point, which POINTS to the previous point in the list (see line 93
+prev_point, which POINTS to the previous point in the list (see line 150
 where we set prev_point to POINT to current point before we set the set
 the current point to POINT to the next point in the list).
 
@@ -97,7 +110,7 @@ Then we take the cart_x from the previous point in the previous
 row (prev_point->cart_x) and make sure it is equal to max_x.
 If it's not we know the row before had either more or less points
 stored and we call function errors. (See notes in reader.c for further
-explanation on why I check this. The explanation starts on row 73.)
+explanation on why I check this. The explanation starts on row 81.)
 
 After exiting the while loop we check the cart_x from the previous point.
 Without this step we wouldn't check the last row in the file.
