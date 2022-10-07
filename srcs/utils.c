@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:04:24 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/07 15:11:53 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/07 15:15:14 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,20 +98,20 @@ it returns blue.
 int	get_color(t_point *start, t_point *end)
 {
 	if (start->color == WHITE)
-		return (0xFFFFFF);
+		return (WHITE_COL);
 	else if (start->color == RED)
-		return (0xFF2D00);
+		return (RED_COL);
 	else if (start->color == GREEN)
-		return (0x6CFF00);
+		return (GREEN_COL);
 	else if (start->color == HIGHLIGHT)
 	{
 		if (start->z > 0 || end->z > 0)
-			return (0xE800FF);
+			return (MAGENTA_COL);
 		else if (start->z == 0 || end->z == 0)
-			return (0xFFFFFF);
+			return (WHITE_COL);
 		else
-			return (0x000FFF);
+			return (BLUE_COL);
 	}
 	else
-		return (0xFFFFFF);
+		return (WHITE_COL);
 }

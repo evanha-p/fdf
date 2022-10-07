@@ -6,7 +6,7 @@
 /*   By: evanha-p <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 18:42:08 by evanha-p          #+#    #+#             */
-/*   Updated: 2022/10/06 17:28:53 by evanha-p         ###   ########.fr       */
+/*   Updated: 2022/10/07 15:17:25 by evanha-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 void	draw_menu(t_mlx *mlx)
 {
-	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 10, 0xB9FF00, \
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 10, BR_GREEN_COL, \
 			"esc = exit");
-	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 30, 0xB9FF00, \
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 30, BR_GREEN_COL, \
 			"UP/DOWN/LEFT/RIGHT arrow keys = move image");
-	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 50, 0xB9FF00, \
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 50, BR_GREEN_COL, \
 			"+/- = zoom image");
-	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 70, 0xB9FF00, \
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 70, BR_GREEN_COL, \
 			"w/s = raise/lower the height");
-	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 90, 0xB9FF00, \
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 90, BR_GREEN_COL, \
 			"r/i = switch between sideways and isometric projection");
-	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 110, 0xB9FF00, \
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 110, BR_GREEN_COL, \
 			"w/s = raise/lower the height");
-	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 130, 0xB9FF00, \
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 130, BR_GREEN_COL, \
 			"1 = set color to white");
-	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 150, 0xB9FF00, \
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 150, BR_GREEN_COL, \
 			"2 = set color to red");
-	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 170, 0xB9FF00, \
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 170, BR_GREEN_COL, \
 			"3 = set color to green");
-	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 190, 0xB9FF00, \
+	mlx_string_put(mlx->mlx_ptr, mlx->win_ptr, 10, 190, BR_GREEN_COL, \
 			"4 = highlight negative and positive height values");
 }
 /*
